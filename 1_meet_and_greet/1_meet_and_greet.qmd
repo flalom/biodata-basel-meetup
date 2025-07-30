@@ -1,0 +1,121 @@
+---
+title: "Welcome to BioData Basel!"
+subtitle: "The Basel BioData community!"
+author: "Flavio Lombardo"
+date: "July 31, 2025"
+format: 
+  revealjs:
+    theme: [default, custom.scss]
+    logo: "assets/logo.png"
+    slide-number: true
+    self-contained: true
+---
+
+## Welcome!
+
+I am happy to be here and I welcome you the very first event!
+
+<br>
+
+My name is **Flavio Lombardo**, and I'm excited to get this community started with all of you.
+
+<br>
+
+<span class="accent">**Joining online?** [**Click here for the Google Meet**](https://meet.google.com/gfv-hzqk-aos)</span>
+
+
+---
+
+## About me!{.scrollable}
+
+::: {.columns}
+::: {.column width="40%"}
+![](assets/D08_3669.png) 
+:::
+::: {.column width="60%"}
+A little about me:
+
+-   *I'm a Postdoctoral Researcher at the University Hospital Basel & University of Basel.*
+-   *I'm very passionate about biology/bioinformatics/computational biology/data science and building open source tools with R/Python and Rust to help the community.*
+-   *I enjoy sharing with people! and here my goal is to create a space to meet others in the field or people who share the same interest!*
+:::
+:::
+
+<br>
+<hr>
+
+### Want to help organize?
+I would be glad!
+<br>
+If you are interested in helping choose topics, find speakers, or shape future events, please chat with me after this session. <span class="accent">All help is welcome!</span>
+
+---
+
+## Today's Goal
+
+The goal for the next <span class="accent">few minutes</span> is simple: to shape together what this community will become and getting to know each other.
+
+---
+
+## Key Questions
+
+::: {.columns}
+### 1. Where should we meet?
+
+-   **In-Person**
+-   **Fully Online**
+-   **Hybrid Model**
+:::
+
+## {auto-animate=true}
+
+### 2. When is best?
+
+-   **Weekday Evenings**
+-   **Weekends**
+
+---
+
+### 3. What format sounds most interesting to you?
+
+<br>
+
+-   **Talks**
+-   **Workshops**
+-   **Journal Club**
+-   **Socials & "Apéro"**
+-   **_A mix of the above?_**
+
+---
+
+## Let's Discuss & Decide!
+
+Now, over to you!
+
+We can use a quick show of hands, or feel free to unmute and share your thoughts.
+
+-   **Where?** (In-Person / Online / Hybrid)
+-   **When?** (Weekday / Weekend)
+-   **What?** (Talks / Workshops / Socials)
+
+Here the link to the [**survey**](https://forms.gle/xMex4p4hHQuJJr2PA)
+
+---
+
+## Next Steps & Stay Connected
+
+Thank you for the great input!
+
+Here the [**survey's results**](https://docs.google.com/spreadsheets/d/1QCGcy0tGlWgh2B-e34joydpF2jNf8VugODL869EPDHU/edit?usp=sharing) 
+<br>
+
+## Keep the conversation going:
+
+-   **Meetup Page:** [Basel Science Meetup Group](https://www.meetup.com/basel-science-meetup-group/)
+-   **GitHub:** [github.com/flalom](https://github.com/flalom)
+-   **Website:** [flaviolombardo.site](https://www.flaviolombardo.site/)
+-   **Connect on LinkedIn:** [in/flaviolombardo](https://www.linkedin.com/in/flaviolombardo/)
+
+
+## I Will see you next time!
+Thank you!
