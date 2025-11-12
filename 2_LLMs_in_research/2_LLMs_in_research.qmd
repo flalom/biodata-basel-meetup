@@ -1,0 +1,667 @@
+---
+title: "2. LLMs in research!"
+subtitle: "The Basel BioData community!"
+author: "Flavio Lombardo"
+date: "November 13, 2025"
+format: 
+  revealjs:
+    theme: [default, custom.scss]
+    logo: "assets/logo.png"
+    slide-number: true
+    self-contained: true
+    scrollable: true
+---
+
+## Welcome!
+
+Welcome to the Basel BioData Community meetup on **LLMs in Research**!
+
+<br>
+
+My name is **Flavio Lombardo**, I am a computational biologist at the University Hospital in Basel. I am happy to share some ideas on how LLMs are changing research (and other fields) and how they could help you.
+
+<br>
+
+<span class="accent">**Link to the meeting** [**Click here for the Google Meet**](https://meet.google.com/gfv-hzqk-aos)</span>
+
+- **All opinions are my own and do not reflect my employer**
+- **I do not have any conflict of interest with any of the topics here presented**
+
+---
+
+## Today's Agenda
+
+::: {.incremental}
+1. **LLMs in Research Workflows** - How can LLMs help you?
+2. **LLMs with R** - Using DeepSeek API with ellmer
+3. **Hands-on Demo** - Structured data extraction and PDF processing
+4. **Q&A and Discussion**
+:::
+
+---
+
+## Setup to Follow Along (1/2)
+
+### Required Packages
+
+Install these R packages to follow along:
+
+```r
+# Install required packages
+install.packages("ellmer")
+install.packages("pdftools")
+install.packages("jsonlite")
+install.packages("dplyr")
+install.packages("purrr")
+```
+
+### Get Your DeepSeek API Key (Free!)
+
+**Step 1:** Visit [platform.deepseek.com](https://platform.deepseek.com)
+
+**Step 2:** Sign up and get your API key (free $5 credit = ~35M tokens!)
+
+**Step 3:** Add to your `.Renviron` file:
+```r
+DEEPSEEK_API_KEY="your-key-here"
+```
+
+**Don't have an API key yet?** No problem! Follow along and try later.
+
+---
+
+## Setup to Follow Along (2/2)
+
+### Optional: Local Models with Ollama
+
+For privacy-sensitive work or offline usage:
+
+```r
+# Install Ollama helper package
+install.packages("ollamar")
+```
+
+**Then install Ollama app:**
+- Visit: [ollama.com](https://ollama.com)
+- Download for your operating system
+- Pull a model (we'll use `qwen3:1.7b`)
+
+<br>
+
+### Need Help?
+
+- **Ask questions anytime!**
+- All code examples will be shared
+- We'll go step-by-step through examples
+- No pressure to set up everything now
+
+---
+
+## What are LLMs?
+
+**Large Language Models** are AI systems trained on vast amounts of text data.
+
+::: {.incremental}
+- Generate human-like text
+- Understand and respond to questions
+- Assist with coding, writing, and analysis
+- Examples: **GPT-4**, **Claude**, **Llama**, **Mistral**, **Deepseek**
+:::
+
+<br>
+
+::: {.fragment}
+<span class="accent">**Why should researchers (or you) care?**</span>
+
+They can accelerate literature review, data analysis, code development, and scientific writing.
+:::
+
+---
+
+## LLMs in Research Workflows (1/2)
+
+::: {.columns}
+::: {.column width="50%"}
+### Literature Review
+- Summarize papers quickly
+- Extract key findings
+- Compare methodologies
+:::
+
+::: {.column width="50%"}
+### Data Analysis
+- Generate analysis scripts
+- Debug code
+- Suggest visualizations
+:::
+:::
+
+---
+
+## LLMs in Research Workflows (2/2)
+
+::: {.columns}
+::: {.column width="50%"}
+### Writing & Documentation
+- Draft manuscript sections
+- Improve clarity and grammar
+- Generate figure captions
+:::
+
+::: {.column width="50%"}
+### Coding Assistance
+- Write R/Python functions
+- Optimize algorithms
+- Troubleshoot errors
+:::
+:::
+
+---
+
+## Why Cloud LLMs for Research?
+
+::: {.incremental}
+- **No setup** - Start coding immediately
+- **State-of-the-art models** - GPT-4, Claude, DeepSeek
+- **Structured extraction** - Get typed data (integers, dates, strings)
+- **Cost-effective** - DeepSeek: $0.14 per 1M tokens
+- **Easy scaling** - Process hundreds of papers
+- **Regular updates** - Models improve automatically
+:::
+
+<br>
+
+::: {.fragment}
+<span class="accent">**Note:** For sensitive data, consider local models</span>
+:::
+
+---
+
+## Cloud LLMs in R: ellmer Package
+
+::: {.columns}
+::: {.column width="50%"}
+**ellmer** is Posit's official R package for working with LLMs (launched Feb 2025!)
+
+### Why ellmer?
+- Clean, R-native interface
+- **Structured data extraction** (integers, strings, dates)
+- 20+ provider support
+- Type-safe outputs
+- Built-in DeepSeek support!
+:::
+
+::: {.column width="50%"}
+```r
+# Install ellmer (on CRAN)
+install.packages("ellmer")
+
+# Or development version
+pak::pak("tidyverse/ellmer")
+```
+
+**Supported Providers:**
+- OpenAI (GPT-4, GPT-4o)
+- Anthropic (Claude)
+- **DeepSeek** (dedicated function!)
+- Google Gemini, Ollama, & more
+:::
+:::
+
+---
+
+## Setup: ellmer with DeepSeek API
+
+**Step 1:** Get a DeepSeek API key from [platform.deepseek.com](https://platform.deepseek.com)
+
+**Step 2:** Set up your API key
+```r
+# In your .Renviron file (recommended) - use this for DeepSeek
+DEEPSEEK_API_KEY="sk-your-deepseek-key-here"
+
+# Or in R session (temporary)
+Sys.setenv(DEEPSEEK_API_KEY = "sk-your-deepseek-key-here")
+```
+
+**Step 3:** Create a chat session with DeepSeek
+
+```r
+library(ellmer)
+
+# Create chat with DeepSeek
+chat <- chat_deepseek(
+  system_prompt = "You are a research assistant."
+)
+
+# Use it!
+chat$chat("Explain CRISPR in simple terms")
+```
+
+**Why DeepSeek?**
+- **Much cheaper:** $0.14 per 1M tokens vs OpenAI's $2.50
+- Strong coding & research capabilities
+- Your $5 credit = ~35M tokens!
+
+::: {.fragment}
+<span style="font-size: 0.8em;">**Note:** DeepSeek requires a workaround for structured data (see next slide)</span>
+:::
+
+---
+
+## Structured Data Extraction with DeepSeek
+
+DeepSeek requires forcing JSON output via `api_args`:
+
+```r
+library(ellmer)
+library(jsonlite)
+
+# Create chat with JSON output forced
+chat <- chat_deepseek(
+  system_prompt = "You are a research assistant.
+  Always respond with valid JSON only.",
+  api_args = list(response_format = list(type = "json_object"))
+)
+
+# Ask for structured data
+abstract <- "In our 2023 study, we analyzed 150 patients.
+The treatment showed significant improvement (p = 0.001)..."
+
+prompt <- 'Extract this data as JSON:
+{
+  "year": <integer>,
+  "sample_size": <integer>,
+  "p_value": <number>,
+  "conclusion": "<string>"
+}'
+
+response <- chat$chat(paste(abstract, prompt))
+
+# Parse JSON response
+data <- fromJSON(response)
+data$year          # 2023
+data$sample_size   # 150
+data$p_value       # 0.001
+```
+
+---
+
+## Example: Asking Specific Questions to a PDF
+
+Go beyond structured extraction and ask direct questions.
+
+```r
+library(pdftools)
+library(ellmer)
+
+# Extract text from a specific paper
+pdf_path <- "Multimodal learning enables chat-based exploration of single-cell data.pdf"
+text <- pdf_text(pdf_path) |> paste(collapse = "\n")
+
+# Create a chat session
+chat <- chat_deepseek(
+  system_prompt = "You are a helpful research assistant.
+  Answer questions based *only* on the provided text.",
+  api_args = list(),
+  seed = 1234
+)
+
+# Ask a specific question about the paper's content
+question <- "What was the primary conclusion regarding this paper?"
+
+# Combine context and question
+prompt <- paste(
+  "Here is the text from a research paper:",
+  text,
+  "---",
+  "Please answer the following question based on the text:",
+  question,
+  sep = "\n"
+)
+
+# Get the answer
+response <- chat$chat(prompt)
+```
+
+---
+
+## Complete Example: Batch PDF Processing with DeepSeek {.scrollable}
+
+Extract structured data from multiple papers efficiently:
+
+```r
+library(ellmer)
+library(jsonlite)
+library(pdftools)
+library(purrr)
+
+# Create chat with JSON mode
+chat <- chat_deepseek(
+  system_prompt = "Extract paper metadata as valid JSON.
+  Use null for missing values.",
+  api_args = list(response_format = list(type = "json_object"))
+)
+
+# Define extraction template
+extraction_prompt <- 'Extract these fields as JSON:
+{
+  "title": "<string>",
+  "year": <integer>,
+  "authors": ["<string>"],
+  "sample_size": <integer or null>,
+  "methods": ["<string>"],
+  "key_finding": "<string>",
+  "p_values": [<number>]
+}'
+
+# Function to extract from one PDF
+extract_paper_data <- function(pdf_path) {
+  text <- pdf_text(pdf_path) |> paste(collapse = "\n")
+  prompt <- paste(text, extraction_prompt, sep = "\n\n")
+  response <- chat$chat(prompt)
+  fromJSON(response)
+}
+
+# Process multiple PDFs
+pdf_files <- list.files(pattern = "*.pdf", full.names = TRUE)
+papers_data <- map(pdf_files, extract_paper_data)
+
+# Convert to data frame
+library(dplyr)
+papers_df <- papers_data |>
+  map_dfr(as_tibble) |>
+  unnest_wider(everything())
+
+# Analyze results
+papers_df |>
+  filter(year >= 2020) |>
+  arrange(desc(sample_size))
+```
+
+---
+
+## Local Models with Ollama (1/2)
+
+For **sensitive data** or **offline work**, run models locally with Ollama:
+
+### Setup
+
+```r
+# Install Ollama from ollama.com
+# Then pull a model (in terminal):
+ollama pull qwen3:1.7b
+
+# Or from R:
+install.packages("ollamar")
+ollamar::pull("qwen3:1.7b")
+```
+
+### Basic Chat Example
+
+```r
+library(ellmer)
+
+# Create a chat with local model
+chat <- chat_ollama(
+  model = "qwen3:1.7b",
+  system_prompt = "You are a research assistant."
+)
+
+# Use it like any other chat
+chat$chat("Explain p-values in simple terms")
+```
+
+---
+
+## Local Models with Ollama (2/2)
+
+### Structured Data Extraction
+
+```r
+library(ellmer)
+library(jsonlite)
+
+# Define JSON schema for extraction
+schema <- list(
+  type = "object",
+  properties = list(
+    year = list(type = "integer"),
+    sample_size = list(type = "integer")
+  ),
+  required = c("year", "sample_size")
+)
+
+# Create chat with JSON mode and clear instructions
+chat <- chat_ollama(
+  model = "qwen3:1.7b",
+  system_prompt = "You must respond with valid JSON only.
+  No explanations, no markdown, just JSON.",
+  api_args = list(format = schema)
+)
+
+# Extract data with explicit JSON request
+text <- "In 2023, we studied 150 patients..."
+prompt <- paste0(
+  "Extract as JSON: ", text,
+  "\nReturn format: {\"year\": <int>, \"sample_size\": <int>}"
+)
+
+response <- chat$chat(prompt)
+data <- fromJSON(response)
+
+# Access results
+data$year          # 2023
+data$sample_size   # 150
+```
+
+### Recommended Local Models
+
+- **`qwen3:1.7b`** - Fast, good quality (recommended)
+- **`llama3.2:3b`** - Balanced performance
+- **`phi4:latest`** - Microsoft's efficient model
+
+---
+
+## Tips for Better Results
+
+::: {.incremental}
+1. **Be specific** - "Create a violin plot with ggplot2" vs "make a plot"
+2. **Set temperature** - Lower (0.1-0.3) for code, higher (0.7-0.9) for creative tasks in `api_args = list(temperature = 0.7)`
+3. **Use system prompts** - Define the LLM's role and expertise
+4. **Iterate** - Refine prompts based on outputs
+5. **Verify outputs** - Always check code and facts
+6. **Use schemas** - Define expected output structure for reliable extraction
+:::
+
+---
+
+## Best Practices
+
+::: {.columns}
+::: {.column width="50%"}
+### ✅ Do:
+- Review generated code
+- Cite LLM assistance in papers
+- Test outputs thoroughly
+- Validate extracted data
+- Use schemas for structure
+:::
+
+::: {.column width="50%"}
+### ❌ Don't:
+- Blindly trust outputs
+- Share sensitive patient data
+- Use for final statistical decisions
+- Ignore model limitations
+- Skip manual verification
+:::
+:::
+
+---
+
+## Resources & Getting Started (1/2)
+
+### R Packages
+
+- **ellmer:** [ellmer.tidyverse.org](https://ellmer.tidyverse.org/) - Main LLM interface
+- **pdftools:** Extract text from PDF files
+- **jsonlite:** Parse JSON responses
+- **purrr:** Batch processing multiple files
+- **dplyr:** Data manipulation and analysis
+
+### API Setup for Cloud Models
+
+**DeepSeek (Recommended - Cheapest):**
+- Visit: [platform.deepseek.com](https://platform.deepseek.com)
+- Free $5 credit (~35M tokens!)
+- $0.14 per 1M tokens
+
+**Alternative Providers:**
+- **OpenAI:** [platform.openai.com](https://platform.openai.com) - GPT-5, GPT-4o
+
+- **Anthropic:** [console.anthropic.com](https://console.anthropic.com) - Claude 4.5
+
+---
+
+## Resources & Getting Started (2/2)
+
+### Learning Resources
+
+**Documentation:**
+- [ellmer Documentation](https://ellmer.tidyverse.org/) - Main package docs
+- [Structured Data Guide](https://ellmer.tidyverse.org/articles/structured-data.html) - Type-safe extraction
+- [DeepSeek API Docs](https://platform.deepseek.com/api-docs/) - API reference
+- [Prompt Engineering Guide](https://www.promptingguide.ai/) - Writing better prompts
+
+### Community & Support
+
+**Get Help:**
+- [Posit Community](https://community.rstudio.com) - Ask questions
+- [R for Data Science](https://r4ds.hadley.nz/) - Learn R fundamentals
+- [ellmer GitHub Issues](https://github.com/tidyverse/ellmer/issues) - Report bugs
+
+**Stay Updated:**
+- Follow Posit blog for ellmer updates
+- Join R communities on social media
+
+---
+
+## Questions & Discussion
+
+Let's discuss:
+
+- What research tasks could benefit from LLMs?
+- Privacy concerns in your field?
+- Experiences with AI tools?
+- Ideas for future sessions?
+
+---
+
+## Stay Connected
+
+::: {.columns}
+::: {.column width="50%"}
+### Community
+- **Meetup:** [Basel Science Meetup Group](https://www.meetup.com/basel-science-meetup-group/)
+- **Future Topics:** AI in research, reproducible workflows, data visualization
+:::
+
+::: {.column width="50%"}
+### Connect with Me
+- **GitHub:** [github.com/flalom](https://github.com/flalom)
+- **Website:** [flaviolombardo.site](https://www.flaviolombardo.site/)
+- **LinkedIn:** [in/flaviolombardo](https://www.linkedin.com/in/flaviolombardo/)
+:::
+:::
+
+---
+
+## Thank You!
+
+<br>
+
+<span class="accent">**See you at the next meetup!**</span>
+
+<br>
+
+Questions? Let's chat!
+
+---
+
+# Backup Slides (Reference Only)
+
+---
+
+## [BACKUP] Structured Data Extraction with ellmer (for OpenAI/Claude)
+
+**Note:** This approach uses ellmer's native `chat_structured()` which currently works with OpenAI and Claude, but NOT with DeepSeek.
+
+[Github issue](https://github.com/tidyverse/ellmer/issues/242)
+
+**Note:** In the API args one could extract the JSON and parse the results with `api_args = list(response_format = list(type = "json_object"))` forcing the model to output structured data.
+
+Extract **typed data** (dates, numbers, strings) from text:
+
+```r
+library(ellmer)
+
+# Define extraction schema
+paper_data <- type_object(
+  title = type_string(),
+  publication_date = type_string(),
+  sample_size = type_integer(),
+  p_value = type_number(),
+  conclusion = type_string()
+)
+
+# Extract from paper abstract
+abstract <- "In our study (2023), we analyzed 150 patients.
+The treatment showed significant improvement (p = 0.001)..."
+
+# Use OpenAI or Claude (NOT DeepSeek)
+chat <- chat_openai()  # or chat_anthropic()
+result <- chat$chat_structured(
+  abstract,
+  type = paper_data
+)
+
+# Access structured data
+result$publication_date  # "2023"
+result$sample_size       # 150
+result$p_value          # 0.001
+```
+
+---
+
+## [BACKUP] Processing PDFs with ellmer Native Methods
+
+**Note:** This shows ellmer's `chat_structured()` which works with OpenAI/Claude but NOT DeepSeek.
+
+```r
+library(pdftools)
+library(ellmer)
+
+# Extract PDF text
+text <- pdf_text("Multimodal learning enables chat-based exploration of single-cell data.pdf") |> paste(collapse = "\n")
+
+# Define what to extract
+schema <- type_object(
+  title = type_string(),
+  year = type_integer(),
+  sample_size = type_integer(),
+  main_findings = type_string()
+)
+
+# Extract structured data with OpenAI or Claude
+chat <- chat_openai()  # or chat_anthropic()
+data <- chat$chat_structured(
+  text,
+  type = schema
+)
+
+# Access results
+data$year          # 2023
+data$sample_size   # 150
+```
+
+**Tip:** Use `parallel_chat_structured()` for batch processing multiple PDFs!

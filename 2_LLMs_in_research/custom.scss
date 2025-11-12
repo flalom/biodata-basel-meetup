@@ -1,0 +1,38 @@
+/*-- scss:defaults --*/
+
+//================================================
+// Color Palette & Font Definitions
+//================================================
+
+// Color palette from the flier image
+$background-color: #F8FFFF;
+$text-color: #2c3e50;
+$header-color: #005A9C;
+$link-color: #008B8B;
+$accent-color: #E67E22;
+
+// Assigning colors to Quarto's theme variables
+$body-bg: $background-color;
+$body-color: $text-color;
+$link-color: $link-color;
+$presentation-heading-color: $header-color;
+$presentation-heading-font: 'Quicksand', sans-serif;
+$presentation-heading-font-weight: 600;
+
+
+/*-- scss:rules --*/
+
+//================================================
+// Custom CSS Rules
+//================================================
+
+// Rule for the custom .accent class
+.accent {
+  color: $accent-color;
+  font-weight: bold;
+}
+
+// Rule to ensure links change color on hover
+.reveal a:hover {
+  color: lighten($link-color, 15%);
+}
