@@ -1,0 +1,563 @@
+---
+title: 'Challenges in microbiome translational research'
+subtitle: 'BioData meetup 4 | April 2026'
+author: "Vivien Pichon"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float: true
+    theme: flatly
+    css: style.css # Optional, keep only if you also have the attached style.css
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+## Load packages
+### Always useful
+library(tidyverse)   # Data manipulation
+library(reshape2)    # Data reshaping
+library(knitr)       # Formatting for the tables
+library(kableExtra)  # Formatting for the tables
+
+### Differential expression
+library(edgeR)
+
+### Data visualization
+library(viridis)     # Colourblind-friendly colour scale
+library(RColorBrewer) # Colour palette
+library(pheatmap)    # Heatmap package
+library(ggtree)      # Build the phylogenetic trees
+library(ggtreeExtra) # Extra functionalities for ggtree
+library(ggnewscale)  # Allows to add multiple heatmaps around a single tree
+
+```
+
+
+In this document, we will go through a few steps used in my study of the potato microbiota as explained during the BioData Basel meetup on April, 9th 2026.
+A specificity of this project is that we isolated bacterial strains from the same plants we took microbiota samples, increasing the chance that the observed Amplicon Sequence Variant (ASV) correspond to strains.
+This gave us possibility of a testing hypotheses on the role of some strains based on the changes observed in the plant's microbiota.
+
+Mixing metagenomics and culturomics is challenging and sometimes messy. Unfortunately the "messy" nature of the task is rarely reported and deserves more attention. 
+The goal of this presentation is to show you some concrete examples of the challenges we meet with the current technology.
+
+For clarity reasons, I show only here a small fraction of the work we did. If you want the whole story, the preprint and the link to **all the data and codes** are available on [BioRxiv](https://www.biorxiv.org/content/10.64898/2026.03.06.709792v1)
+
+In the first part I show you how we detected differentially abundant strains between infected and uninfected plants using the package **edgeR**, a package normally used to detect differentially expressed genes in RNAseq studies.
+
+In the second part I show you an example of how to represent the differential abundance in the whole rhizosphere. I will also show you the limits of the aggregation per Phylum/Order/Genus that we see frequently in microbiome papers.
+
+In the third part we see how to create a **custom BLAST database** and query it with the goal of detecting the ASV corresponding to each bacterial strain we isolated.
+
+
+This whole document is supposed to be read along with the attached pptx file.
+
+
+# 1 - Differential abundance strains detection
+
+I show you how we detected differentially abundant strains between infected and uninfected plants using the package **edgeR**, a package normally used to detect differentially expressed genes in RNAseq studies.
+
+
+## Import data
+
+```{r import_data}
+
+## Import ASV table
+asvtab_filtered <- read.csv( "data/asvmat_br.csv",
+                             check.names = FALSE,
+                             row.names = 1)
+
+## Turn it into a matrix
+asvmat_BR <- as.matrix(asvtab_filtered)
+
+asvtab_filtered |> 
+  head() |> 
+  kable() |> 
+  kable_styling() |> 
+  scroll_box(width = "750px")
+```
+
+```{r import_data2}
+
+## Import phylogeny tab
+phylo_filtered <- read.csv( "data/phylogeny_br.csv",
+                            check.names = FALSE,
+                            row.names = 1)
+
+## Turn it into a matrix
+phylo_BR <- as.matrix(phylo_filtered)
+
+phylo_filtered |> 
+  head() |> 
+  kable() |> 
+  kable_styling()
+
+```
+
+
+```{r import_data3}
+## Import sample metadata
+meta_BR <- read.csv("data/metadata_br.csv",
+                     check.names = FALSE,
+                     row.names = 1)
+
+meta_BR |> 
+  head() |> 
+  kable() |> 
+  kable_styling() |> 
+  scroll_box(width = "750px")
+
+## Import reference sequences
+sequences <- read.csv("data/ref_sequences_br.csv",
+                     check.names = FALSE)
+
+```
+
+## Create DGE object
+
+Here we combine the matrices into a DGE object to be analysed by edgeR.
+
+
+```{r Create_dge_object}
+
+## Create DGEList objects
+dge_br <- DGEList(counts = asvmat_BR,
+                 genes = phylo_BR,
+                 samples = meta_BR)
+
+## Convert type of the "treatment" column to factor
+dge_br$samples$treat <- factor(dge_br$samples$treat,
+                             levels = c("C", "V"))
+
+## TMM normalization (Trimmed Mean of the M-values)
+dge_br <- edgeR::calcNormFactors(dge_br)
+
+```
+
+
+## Find differentially abundant taxa
+
+```{r Bintje_rhizosphere_DA}
+
+## Create Multidimensional Scaling plot
+plotMDS(dge_br
+        , labels = rownames(dge_br$samples)
+        , col = as.numeric(dge_br$samples$treat)
+        , cex = 0.5)
+
+```
+
+The color represents the infection status (red is infected).
+
+Most of the variability is linked to the infection status.
+
+```{r}
+## Design the model's formula for the Generalized Linear Model
+design <- model.matrix(~ treat , data = dge_br$samples )
+
+## Estimate the variability of counts of each ASV (necessary for negative binomial GLM)
+glmest <- estimateGLMRobustDisp(dge_br, design = design)
+
+## Fits negative binomial GLM. prior.count adds a pseudocount to stabilize estimates for low-occurring ASVs.
+fit_glm <- glmFit(glmest, design = design, prior.count = 0.125)
+
+## GLM Likelihood Ratio test, checks if the infection status has an effect on the counts of each ASV.
+## Calculates AND ADJUSTS p-value.
+lrt_treat <- glmLRT(fit_glm, coef = 2)
+
+## Sorts ASV per significance
+tt_treat <- as.data.frame(topTags(lrt_treat, n = Inf ))
+
+## Show tt_treat
+tt_treat |> 
+  head() |> 
+  kable() |> 
+  kable_styling() |> 
+  scroll_box(width = "750px")
+
+```
+
+This table shows how differentially abundant each ASV is between the infected and uninfected plants. They are ordered accoding to the p-value.
+
+```{r}
+## Export differentially expressed ASVs counts 
+write.csv(tt_treat, file = "data/all_ASV.csv")
+
+```
+
+We can then plot the results as a volcano plot.
+
+```{r}
+
+## Summarize differential abundance (used for the volcano plot below)
+treat_summary <- t(
+    summary( de <- decideTests(lrt_treat)) )
+
+## Create volcano plot
+plotMD( lrt_treat, main = "Differential abundance in the rhizosphere", cex=0.5 )
+abline( h=c(-1,1), col = "blue" )
+text( x = 12, y = -4, labels = paste0("Up: ",treat_summary[3], 
+                                      "\n NotSign: ", treat_summary[2], 
+                                      "\n Down: ", treat_summary[1]) )
+
+```
+
+In the plot above, each point represents one ASV.
+The x axis represents the average abundance (log scale), and the y axis represents the log-fold change between the infected and uninfected plants.
+The red dots represent the ASV that became more abundance upon infection, the blue dots are the ASV that became less abundant, the black dots did not change significantly.
+
+
+# 2 - Community shifts visualization
+
+Here I show you an example of how to represent the differential abundance in the whole rhizosphere.
+
+Some more data wrangling is necessary between DA ASV detection and this step:
+
+- Creation of a giant phylogenetic tree with all the ASVs (in Unix on HPC, aligned with MAFFT, tree created with FastTree)
+- Aggregate the taxa at the **Order** phylogenetic level, and calculate 3 indicators:
+  - the **total abundance** of each Order.
+  - **Proportion of differentially abundant ASVs**, weighted by ASV abundance, scaled with the **order's abundance**.
+  - **Average log-fold change** of differentially abundant ASVs, weighted by ASV abundance, scaled with the **total abundance**.
+  
+
+we will skip to focus on tree building and comments.
+
+## Import and filter objects
+
+```{r import_objects}
+
+## phylogenetic trees
+tree <- readRDS("data/tree_objects/ASV_phylo.rds")
+
+```
+
+This is a phylogenetic tree, aggregated at the order level.
+
+```{r import_tree_objects}
+
+## Phylogenetic information
+tree_info <- readRDS("data/tree_objects/tree_info.rds") |> 
+  select(-Family, -Genus)
+
+tree_info |> 
+  head() |> 
+  kable() |> 
+  kable_styling(full_width = FALSE)
+
+```
+
+```{r import_tree_objects2}
+
+## List of orders belonging to each phylum (used for colors)
+taxalist <- readRDS("data/tree_objects/taxa_list.rds")
+
+map(taxalist, head, 3)[1:5]
+```
+
+This is a list of the **Orders** included in each **Phylum**.
+
+```{r import_tree_objects3}
+
+## Abundance matrix (used for annotations)
+abund_matrix <- readRDS("data/tree_objects/abund_matrix.rds")
+
+abund_matrix  |> 
+  head() |> 
+  kable() |> 
+  kable_styling(full_width = FALSE)
+
+```
+
+This is the matrix of abundance.
+
+```{r import_tree_objects4}
+
+## Local indicator (described above,used for more annotations)
+DA_proportion_matrix <- readRDS("data/tree_objects/abund_ratio_matrix.rds")
+
+DA_proportion_matrix  |> 
+  head() |> 
+  kable() |> 
+  kable_styling(full_width = FALSE)
+
+```
+
+This is the matrix showing the ratio of differential abundance present in each Order.
+
+```{r import_tree_objects5}
+
+## Global indicator (described above, used for even more annotations)
+logfc_direction_matrix <- readRDS("data/tree_objects/logfc_matrix.rds")
+
+logfc_direction_matrix  |> 
+  head() |> 
+  kable() |> 
+  kable_styling(full_width = FALSE)
+
+```
+
+This is the matrix showing the average log-fold change of the significantly differentially abundant ASVs.
+
+## Create base tree
+
+```{r create_base_tree}
+
+## Make basic tree
+p <- ggtree(tree, 
+            ladderize = TRUE, 
+            layout="fan",
+            open.angle = 2.5) %<+% tree_info +
+  geom_tiplab(size = 2.5, 
+              align = TRUE, 
+              linesize = 0.5,
+              linetype = "dotted",
+              show.legend = FALSE)+
+  labs(title = "Generation 2, rhizosphere")+
+  theme(legend.title = element_text(size = 16),
+        legend.text = element_text(size = 14))
+
+## rotate tree and add colors
+q <- p  |>  rotate(230) |> rotate(225)|> rotate(228)|> rotate(224)|> rotate(215)|> rotate(217)|> rotate(219)|> rotate(205)|> rotate(201) |> rotate(213)|> rotate(226)|> rotate(214) |> rotate(194) |> rotate(189) |> rotate(190) |> rotate(163) |> rotate(164) |>
+  groupOTU(taxalist, "Phylum") +
+  aes(color = Phylum) +
+  scale_color_manual(values = c("deeppink2", "orangered", "orange", "olivedrab3", "limegreen","springgreen4", "lightseagreen", "steelblue2", "royalblue1", "grey60","purple1", "orchid2", "hotpink1"))
+
+```
+
+## Add informative matrices
+
+```{r add_matrix_to_tree}
+
+r <- gheatmap(q,
+         abund_matrix,
+         offset=0.88,
+         width =0.15,
+         color = "white",
+         colnames_angle = 45,
+         font.size = 2.5,
+         colnames_offset_y = 0,
+         colnames_offset_x = 0
+         ) +
+  scale_fill_gradientn(
+    colors=c("#FFFFFF", "#FDE725FF", 
+             "#94D840FF", "#3CBC75FF", "#1F968BFF", "#2D718EFF", 
+             "#3F4788FF", "#440154FF"),
+    limits = c(0, 6e6),
+                      name = "TMM-normalized \nAbundance",
+                      na.value = "grey"
+                      ) +
+  new_scale_fill()
+
+## Add density heatmap
+s <- gheatmap(r,
+              DA_proportion_matrix,
+              offset=0.66,
+              width = 0.15,
+              color = "white",
+              colnames_angle = 45,
+              font.size = 2.5,
+              colnames_offset_y = 0,
+              colnames_offset_x = 0
+              )+
+
+  scale_fill_gradientn(colors = c("white", "#3F007D"),
+                      limits = c(0, 1),
+                      name = "Ratio",
+                      na.value = "white"
+                      ) +
+  new_scale_fill()
+
+## Add averaged logfc heatmap
+t <- gheatmap(s,
+         logfc_direction_matrix,
+         offset=0.45,
+         width =0.15,
+         color = "white",
+         colnames_angle = 45,
+         font.size = 2.5,
+         colnames_offset_y = 0,
+         colnames_offset_x = 0
+         )+
+  scale_fill_gradientn(colors=c("#053061", "#2166AC", "#FFFFFF", "#B2182B", "#530019"),
+                      values= scales::rescale(c(-3.5e5, -1e5, 0, 1e5, 2.95e5)),
+                      limits = c(-3.5e5, 2.95e5),
+                      name = "Weighted Averaged \nLog-fold Change",
+                      na.value = "grey78"
+                      )
+
+t
+
+```
+
+To read the tree properly, please open the generated pdf file below.
+
+This tree and the information present in it is complicated, but it is the best I can do to represent such a complex dataset.
+For us, this tree has been a great source of information and it takes some time to get into it and understand each information.
+Once it's done though, a glance is enough to compare our results with results presented in many articles.
+
+```{r save_tree, echo=FALSE}
+
+ggsave( "data/Gen2R_tree_perOrder.pdf", t,
+      device = cairo_pdf,
+      width = 40, height = 30, units = "cm")
+
+```
+
+
+One of the reasons the ggtree package is great is because of the fantastic tutorials available on internet. I learned everything from [this page](https://yulab-smu.top/treedata-book/chapter7.html).
+
+
+# 3 - Blast database creation and query
+
+## Database Creation and query
+
+--> See the script blast_db_creation_query.sh
+
+## Get list of matching strains
+
+```{r import_alignment}
+## Import output
+alignment <- read.csv("save_me/ASV_isolates_alignment.csv")
+
+## Get the list of strains of interest
+strain_list <- alignment |>
+  ## Remove short alignments
+  filter(length > 400) |>
+  ## Pull strain names only
+  pull(stitle) |>
+  ## remove duplicate strains
+  unique()
+
+## Print complete list of strain of interest
+cat(sprintf("In the end, we have %d strains of interest to phenotype:\n",
+            length(strain_list)))
+
+```
+
+
+```{r list_perfect_matches}
+
+## Get list of perfect matches
+perfect_match <- alignment |> 
+  ## Filter
+  filter(length > 400,      # Remove short alignments
+         pident == 100      # Keep only perfect matches
+         ) |>
+  ## Keep only one match for each strain
+  distinct(saccver, .keep_all = TRUE) |> 
+  ## Select columns
+  select(strain = saccver, ASV = qaccver, length)
+
+## Print
+perfect_match |> 
+  kable(label = "List of perfect matches") |> 
+  kable_styling(full_width = FALSE) |> 
+  scroll_box(height = "400px")
+
+## Report on perfect matches
+cat(sprintf("%d ASVs are perfectly matched by at least a strain, with a total of %d strains.\n",
+            length(unique(perfect_match$ASV)),
+            nrow(perfect_match)))
+
+```
+
+
+```{r}
+
+## Get list with 1 mismatch (simplified)
+mismatch <- alignment |> 
+  ## Filter
+  filter(length > 400,      # Remove short alignments
+         pident != 100,    # Keep only imperfect matches
+         !(saccver %in% perfect_match$strain),   # Remove strains that have a perfect match
+         ) |>
+  ## Keep only one match for each strain
+  distinct(saccver, .keep_all = TRUE) |> 
+  ## Select columns
+  select(strain = saccver, ASV = qaccver, mismatch)
+
+## Print
+mismatch |> 
+  kable(label = "List of strains with a mismatch") |> 
+  kable_styling(full_width = FALSE) |> 
+  scroll_box(height = "400px")
+
+## Report on perfect matches
+cat(sprintf("%d ASVs are matched by at least a strain with a mismatch, with a total of %d strains.\n",
+            length(unique(mismatch$ASV)),
+            nrow(mismatch)))
+
+```
+
+
+We did not have the means to screen all the strains of interest, so we chosed based on the following criteria:
+
+- We pick **all the strains** that have a **perfect 16S/ASV match**,
+- For each ASV that does not have a perfect match, we pick **1 strain with 1 mismatch**.
+- We did **not** test the **filamentous bacteria** because the **16SrRNA gene is a mediocre identity marker** for them, and detected very low changes upon infection. They deserve attention though because they are the soil's champions.
+
+
+If you want the whole story, the preprint and the link to **all the data and codes** are available on [BioRxiv](https://www.biorxiv.org/content/10.64898/2026.03.06.709792v1).
+
+
+# The End
+
+
+```{r session_info}
+sessionInfo()
+
+```
+
+# Annex: Exporting ASVs sequences as a fasta file
+
+We know what we want about the ASVs: Are they differentially abundant or not?
+We will now export their sequences as a FASTA file for the next step of the analysis: Finding the corresponding strains.
+
+```{r filter_sequences, eval=FALSE}
+## Get the list of all the ASVs
+all_asv <- rownames(tt_treat)
+
+## Get their DNA sequence
+all_seq <- sequences |> 
+  filter(asv %in% all_asv) |> 
+  column_to_rownames("asv")
+
+all_seq  |> 
+  head() |> 
+  kable() |> 
+  kable_styling()|> 
+  scroll_box(width = "750px")
+
+```
+
+
+```{r export_ASV_sequences_as_fasta, eval=FALSE}
+
+## Create a function to export the sequences as fasta
+export_to_fasta <- function(df, output_file) {
+  # Extract row names and sequences
+  # We replace spaces with underscores because BLAST+ reads sequence IDs up to the first space
+  strain_names <- gsub(" ", "_", rownames(df)) 
+  
+  # Assuming the sequence is in the first column
+  sequences <- as.character(df[, 1]) 
+  
+  # Create the >Header lines
+  headers <- paste0(">", strain_names)
+  
+  # Interleave headers and sequences (Row 1: Header, Row 2: Seq, Row 3: Header...)
+  fasta_lines <- c(rbind(headers, sequences))
+  
+  # Write the lines to the specified file
+  writeLines(fasta_lines, output_file)
+  
+  cat("Successfully exported", length(strain_names), "sequences to", output_file, "\n")
+}
+
+## Save the sequences of all ASV as fasta
+export_to_fasta(all_seq, "data/all_ASV.fasta")
+
+```

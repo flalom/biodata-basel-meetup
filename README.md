@@ -5,15 +5,20 @@ Welcome to the official GitHub repository for the BioData Basel meetup group! Th
 ---
 
 ## Event Archive
+### 2026
+
+* **Event 4 (April 9th): Challenges in Microbiome Translational Research (Vivien Pichon)**
+    * **Topic:** Presentation of a simplified workflow in a microbiome study. Emphasis on the challenges faced when they need to be combined with bioassays.
+    * **Materials:** [Download Presentation Slides](), [View Workflow markdown]().
 
 ### 2025
 
 * **Event 1 (July 31st): Meet & Greet**
     * **Topic:** Community planning session to decide the future format of the meetup.
-    * **Materials:** [**View Presentation Slides**]https://flalom.github.io/biodata-basel-meetup/1_meet_and_greet/1_meet_and_greet.html)
+    * **Materials:** [View Presentation Slides](https://flalom.github.io/biodata-basel-meetup/1_meet_and_greet/1_meet_and_greet.html)
 * **Event 2 (November 13th): LLMs in research**
     * Topic: How are you using LLMs, some examples and discussion and demo
-    * Materials: View Presentation Slides[https://flalom.github.io/biodata-basel-meetup/2_LLMs_in_research/2_LLMs_in_research.html)
+    * Materials: [View Presentation Slides](https://flalom.github.io/biodata-basel-meetup/2_LLMs_in_research/2_LLMs_in_research.html)
  * **Event 3 (December 18th): MCP server introduction (Lars Nilse)**
     *    Topic: MCPs servers and how could you use them?
     *    Materials: Gist [https://gist.github.com/lars20070/b74ced14355d51c588ddde8828d3a7f0]
