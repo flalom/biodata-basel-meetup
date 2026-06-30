@@ -10,7 +10,7 @@ Welcome to the official GitHub repository for the BioData Basel meetup group! Th
 * **Event 4 (April 9th): Challenges in Microbiome Translational Research (Vivien Pichon)**
     * **Topic:** Presentation of a simplified workflow in a microbiome study. Emphasis on the challenges faced when they need to be combined with bioassays.
     * **Materials:** [Download Presentation Slides](), [View Workflow markdown]().
-** **Event 5 (June 8th): Challenges in spatial transcriptomics - Adipocyte segmentation in bone marrow (Pavel Kos)**
+* **Event 5 (June 8th): Challenges in spatial transcriptomics - Adipocyte segmentation in bone marrow (Pavel Kos)**
     * **Topic:** challenges of cell type segmentation in spatial transcriptomics data. Using adipocyte segmentation in bone marrow as a concrete example, he will cover different model architectures, gradient-based inputs, and preliminary results from U-net based segmentation models.
     * **Materials:** [Download Presentation Slides](https://github.com/flalom/biodata-basel-meetup/raw/main/5_adipocyte_segmentation/adipocyte_segmentation_Pavel_Kos.pptx).
 
