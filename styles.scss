@@ -1,0 +1,411 @@
+/*-- scss:defaults --*/
+// BioData Basel Meetup — site tokens
+// Palette extends the existing deck palette (005A9C / 008B8B / E67E22)
+// with a cool paper background and one dark "ink" band, so it reads as a
+// considered system rather than the deck colors reused wholesale.
+$paper:        #F6F8F7;
+$paper-line:   #DCE4E3;
+$ink:          #0B1F2A;
+$ink-soft:     #47606B;
+$rhine:        #005A9C; // primary
+$plate-teal:   #008B8B; // links / secondary
+$sequence:     #E67E22; // signature accent, used sparingly
+
+$serif:  "IBM Plex Serif", Georgia, serif;
+$sans:   "IBM Plex Sans", -apple-system, Helvetica, Arial, sans-serif;
+$mono:   "IBM Plex Mono", "SF Mono", Consolas, monospace;
+
+// Feed the tokens above into Bootstrap's own variables so Quarto's
+// sass pipeline (which expects this partition structure) picks them up.
+$body-bg: $paper;
+$body-color: $ink;
+$link-color: $plate-teal;
+$font-family-base: $sans;
+$font-family-monospace: $mono;
+$headings-font-family: $sans;
+
+/*-- scss:rules --*/
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: $paper;
+  color: $ink;
+  font-family: $sans;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+main, .quarto-title-block { max-width: none; }
+
+a { color: $plate-teal; }
+a:hover { color: darken($plate-teal, 10%); }
+
+:focus-visible {
+  outline: 2px solid $sequence;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+// Shares the hero's max-width/padding so both start at the same left
+// edge. No max-width cap on paragraphs here — the protocol card and
+// run-log below already flow text at this same full width, so capping
+// just the About text would make its right edge inconsistent with them.
+.content-block {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+}
+// Sections have no spacing of their own, so a hard-edged element like
+// the protocol-card butts straight up against the next heading. Give
+// every section but the first consistent breathing room above it.
+.content-block > section.level2 + section.level2 {
+  margin-top: 3rem;
+}
+.content-block section.level2 > p { text-align: justify; text-justify: inter-word; }
+
+// ---------------------------------------------------------------- nav
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid $paper-line;
+}
+.site-mark {
+  font-family: $mono;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: $ink !important;
+  text-decoration: none !important;
+}
+.site-nav nav a {
+  font-family: $mono;
+  font-size: 0.85rem;
+  color: $ink-soft;
+  text-decoration: none !important;
+  margin-left: 1.25rem;
+}
+.site-nav nav a:hover { color: $rhine; }
+
+// ---------------------------------------------------------------- hero
+.hero {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  align-items: stretch;
+}
+.eyebrow-hero {
+  font-family: $mono;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: $sequence;
+  margin: 0 0 1rem;
+}
+.hero h1 {
+  font-family: $serif;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+  line-height: 1.15;
+  margin: 0 0 1.25rem;
+  color: $ink;
+}
+.hero p {
+  max-width: 34rem;
+  color: $ink-soft;
+  font-size: 1.15rem;
+}
+// Markdown image syntax lands inside an implicit <p> (the actual grid
+// item) — that's the real panel, sized to fill the row's full height so
+// it lines up exactly with the text column instead of floating as a
+// small centered square.
+.hero > p:has(.hero-mark) {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  min-height: 280px;
+}
+// Duotone in the site's own palette: the source illustration's stock
+// colors don't belong to this system, so recolor it to rhine → sequence
+// rather than let a foreign-colored image sit next to disciplined type.
+.hero > p:has(.hero-mark)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, $rhine 15%, $sequence 100%);
+  mix-blend-mode: color;
+}
+.hero-mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.08);
+}
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; padding-top: 3rem; }
+  // order has to be on the actual grid item (the <p> wrapper), not the img
+  .hero > p:has(.hero-mark) { min-height: 200px; order: -1; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-text { animation: rise 0.5s ease-out backwards; }
+  .hero-mark { animation: rise 0.6s ease-out 0.15s backwards; }
+}
+
+.btn-cta {
+  display: inline-block;
+  background: $sequence;
+  color: white !important;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.35rem;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn-cta:hover { background: darken($sequence, 8%); transform: translateY(-1px); }
+.btn-cta-light { background: $sequence; }
+
+// ---------------------------------------------------------------- ruler (signature)
+.ruler {
+  height: 26px;
+  margin: 0 1.5rem;
+  background-image:
+    repeating-linear-gradient(to right, $ink-soft 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(to right, $rhine 0 2px, transparent 2px 120px);
+  background-position: bottom left, bottom left;
+  background-repeat: repeat-x, repeat-x;
+  background-size: 24px 9px, 120px 17px;
+  border-bottom: 1px solid $paper-line;
+}
+.ruler-flip { transform: scaleY(-1); }
+.ruler-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.35rem 1.5rem 0;
+  font-family: $mono;
+  font-size: 0.72rem;
+  color: $ink-soft;
+  letter-spacing: 0.02em;
+}
+
+// ---------------------------------------------------------------- section headers
+h2 {
+  font-family: $mono;
+  font-size: 1.6rem;
+  letter-spacing: 0.01em;
+  text-transform: lowercase;
+  font-weight: 600;
+  color: $rhine;
+  margin: 0 0 1.75rem;
+}
+h2::before { content: ">> "; color: $sequence; }
+// Targeted by id, not a reusable class — a class on a header's attribute
+// list gets fused onto Quarto's auto-generated <section> wrapper too
+// (section-divs), which would hide the whole section, not just the heading.
+// The id itself lands on that generated <section>, not the <h2>.
+#sponsors > h2 {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+
+// ---------------------------------------------------------------- protocol card (next event)
+.protocol-card {
+  border: 1px solid $paper-line;
+  border-left: 3px solid $sequence;
+  border-radius: 0.4rem;
+  padding: 1.75rem 2rem;
+  background: white;
+}
+.protocol-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+// Title wraps within its own space rather than pushing the logos down;
+// logos keep their size and never shrink.
+.protocol-header .protocol-title { flex: 1 1 auto; min-width: 0; }
+.protocol-header .sponsor-logos { flex-shrink: 0; }
+.sponsor-logos-label {
+  font-family: $mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  margin: 0 0 0.4rem;
+  text-align: right;
+}
+// Pandoc wraps the inline img/span content in an implicit <p> inside the
+// div, so the flex row has to target that specifically — not the label
+// paragraph above it, which is written explicitly.
+.sponsor-logos p:not(.sponsor-logos-label) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.1rem;
+  margin: 0;
+}
+.sponsor-logos img { height: 34px; width: auto; display: block; }
+.logo-sep { font-family: $mono; color: $ink-soft; font-size: 1.1rem; }
+
+.protocol-title {
+  font-family: $serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+.protocol-title .run-id { font-size: 1.1rem; margin-right: 0.5rem; }
+@media (max-width: 560px) {
+  .protocol-header { flex-direction: column; align-items: flex-start; }
+}
+.protocol-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+  padding: 1rem 0;
+  border-top: 1px solid $paper-line;
+  border-bottom: 1px solid $paper-line;
+}
+.protocol-meta > div { display: flex; flex-direction: column; gap: 0.2rem; }
+.protocol-meta dt {
+  font-family: $mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  margin: 0;
+}
+.protocol-meta dd { margin: 0; font-weight: 600; }
+@media (max-width: 560px) {
+  .protocol-meta { grid-template-columns: 1fr; }
+}
+
+// ---------------------------------------------------------------- run log (past events)
+.run-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.run-log li {
+  display: grid;
+  grid-template-columns: 2.5rem 6rem 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid $paper-line;
+}
+.run-log li:first-child { border-top: none; }
+.run-id {
+  font-family: $mono;
+  color: $sequence;
+  font-weight: 600;
+}
+.run-date {
+  font-family: $mono;
+  color: $ink-soft;
+  font-size: 0.9rem;
+}
+.run-desc a { margin-left: 0.35rem; white-space: nowrap; }
+@media (max-width: 560px) {
+  .run-log li { grid-template-columns: 1fr; gap: 0.25rem; }
+  .run-id::after { content: " ·"; }
+  .run-id, .run-date { display: inline; }
+}
+
+// ---------------------------------------------------------------- sponsors (ink band)
+// The brand blue itself, not a near-black derivative — a dark neutral
+// slab read as generic/out of place; this reads as "our blue," matching
+// the h2 headers and ruler ticks already colored $rhine elsewhere.
+.sponsor-band {
+  background: $rhine;
+  color: $paper;
+}
+.sponsor-inner {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+}
+// h2 "Sponsors" is the hidden a11y/anchor heading (see #sponsors > h2
+// below); .sponsor-text and .sponsor-example are its two visible columns.
+#sponsors {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  #sponsors { grid-template-columns: 1fr; }
+}
+.eyebrow-dark {
+  font-family: $mono;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: $sequence;
+  margin: 0 0 1rem;
+}
+.sponsor-inner h3 {
+  font-family: $serif;
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  color: white;
+}
+.sponsor-inner p { color: #C9D6D6; text-align: justify; text-justify: inter-word; }
+// The white showcase card echoes the protocol-card treatment, reusing
+// the same sponsor-logos component but left-aligned in its new context
+// (that component defaults to right-aligned, for the next-event header).
+.sponsor-example {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.75rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+.sponsor-example .sponsor-logos-label { text-align: left; color: $ink; font-weight: 600; }
+.sponsor-example .sponsor-logos p:not(.sponsor-logos-label) { justify-content: flex-start; }
+.sponsor-benefits {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  max-width: 34rem;
+}
+.sponsor-benefits li {
+  color: white;
+  padding: 0.6rem 0;
+  border-top: 1px solid rgba(246, 248, 247, 0.15);
+  font-weight: 500;
+}
+.sponsor-benefits li:last-child { border-bottom: 1px solid rgba(246, 248, 247, 0.15); }
+.sponsor-benefits li::before { content: "› "; color: $sequence; font-family: $mono; }
+
+// ---------------------------------------------------------------- footer
+.site-footer {
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  font-family: $mono;
+  font-size: 0.8rem;
+  color: $ink-soft;
+}
+.site-footer a { color: $ink-soft; text-decoration: underline; }
+.site-footer a:hover { color: $rhine; }

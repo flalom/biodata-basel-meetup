@@ -1,0 +1,122 @@
+---
+pagetitle: "BioData Basel Community"
+format:
+  html:
+    theme: [cosmo, styles.scss]
+    page-layout: full
+    toc: false
+    anchor-sections: true
+    include-in-header:
+      text: |
+        <link rel="icon" type="image/png" href="assets/logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
+---
+
+::: {.site-nav}
+[BIODATA BASEL](#top){.site-mark}
+
+<nav>[about](#about) [next event](#next-event) [past events](#past-events) [sponsors](#sponsors)</nav>
+:::
+
+:::: {#top .hero}
+::: {.hero-text}
+<p class="eyebrow-hero">&gt;&gt; basel, switzerland</p>
+
+# Where Basel's biology<br>meets its data.
+
+A community for data scientists, bioinformaticians, and computational biologists in Basel, with talks, demos, and an apéro.
+
+[see the next event →](#next-event){.btn-cta}
+:::
+
+![](assets/logo.png){.hero-mark alt="BioData Basel logo"}
+::::
+
+<div class="ruler" role="presentation"></div>
+<div class="ruler-labels"><span>0</span><span>20kb</span><span>40kb</span><span>60kb</span><span>80kb</span><span>100kb</span></div>
+
+::: {.content-block}
+
+## About {#about}
+
+Welcome to the official home of the **BioData Basel community**, open to students, researchers, and professionals working in bioinformatics, data science, and genomics across the Basel area. We meet regularly to network, learn from each other, and explore what's new in BioData, in a relaxed setting, over talks and an apéro.
+
+Connect with us on [LinkedIn](https://www.linkedin.com/in/flaviolombardo/) or find our next event on the [Meetup page](https://www.meetup.com/basel-science-meetup-group/).
+
+We also like to keep moving around Basel, meeting at a different venue for each apéro. If your organization would like to host an upcoming event, [let us know](mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20Community%20Hosting).
+
+## Next event {#next-event}
+
+<div class="protocol-card">
+<div class="protocol-header">
+<p class="protocol-title"><span class="run-id">06</span> Mapping <em>E. coli</em>'s c-di-GMP signaling network</p>
+<div class="sponsor-logos">
+<p class="sponsor-logos-label">with the support of</p>
+
+<img src="assets/sponsors/olink.png" alt="Olink">
+<span class="logo-sep">×</span>
+<img src="assets/sponsors/thermo-fisher.png" alt="Thermo Fisher Scientific">
+</div>
+</div>
+<dl class="protocol-meta">
+<div><dt>date</dt><dd>2026-09-14</dd></div>
+<div><dt>venue</dt><dd>Department of Biomedicine (DBM), Hebelstrasse 20, Basel · 2nd floor</dd></div>
+<div><dt>speakers</dt><dd>Hendrik Mallin (Olink, 15 min) → Vitaliia Terzova (Jenal Lab)</dd></div>
+</dl>
+<p>Join us for an apéro-style evening: Hendrik Mallin from Olink (recently acquired by Thermo Fisher Scientific) opens with a 15-minute talk, then Vitaliia Terzova (Jenal Lab) presents her genome-engineering work mapping <em>E. coli</em>'s c-di-GMP signaling network. Her approach: sequentially delete all 12 diguanylate cyclase genes to build a c-di-GMP-free strain, screen the result for off-target mutations, then reintroduce individual genes to dissect how each one shapes bacterial behavior.</p>
+</div>
+
+## Past events {#past-events}
+
+<ol class="run-log">
+<li><span class="run-id">05</span><span class="run-date">2026-06-08</span><span class="run-desc"><strong>Adipocyte segmentation in bone marrow</strong>, presented by Pavel Kos. Challenges of cell-type segmentation in spatial transcriptomics, using adipocyte segmentation in bone marrow as a case study: model architectures, gradient-based inputs, and preliminary U-net results. <a href="https://github.com/flalom/biodata-basel-meetup/raw/main/5_adipocyte_segmentation/adipocyte_segmentation_Pavel_Kos.pptx">slides</a></span></li>
+<li><span class="run-id">04</span><span class="run-date">2026-04-09</span><span class="run-desc"><strong>Challenges in Microbiome Translational Research</strong>, presented by Vivien Pichon. A simplified workflow in a microbiome study, with emphasis on the challenges of combining it with bioassays. <a href="https://github.com/flalom/biodata-basel-meetup/raw/main/4_Challenges_in_Microbiome_Research/BioData_meetup_final.pptx">slides</a> · <a href="https://biodata-basel.org/4_Challenges_in_Microbiome_Research/BioData_meetup4_markdown.html">workflow</a></span></li>
+<li><span class="run-id">03</span><span class="run-date">2025-12-18</span><span class="run-desc"><strong>MCP server introduction</strong>, presented by Lars Nilse. What are MCP servers and how could you use them? <a href="https://gist.github.com/lars20070/b74ced14355d51c588ddde8828d3a7f0">gist</a></span></li>
+<li><span class="run-id">02</span><span class="run-date">2025-11-13</span><span class="run-desc"><strong>LLMs in research</strong>. How are you using LLMs? Examples, discussion, and a demo. <a href="https://biodata-basel.org/2_LLMs_in_research/2_LLMs_in_research.html">slides</a></span></li>
+<li><span class="run-id">01</span><span class="run-date">2025-07-31</span><span class="run-desc"><strong>Meet &amp; Greet</strong>. Community planning session to decide the future format of the group. <a href="https://biodata-basel.org/1_meet_and_greet/1_meet_and_greet.html">slides</a></span></li>
+</ol>
+
+:::
+
+::: {.sponsor-band}
+::: {.sponsor-inner}
+
+## Sponsors {#sponsors}
+
+::: {.sponsor-text}
+<p class="eyebrow-dark">&gt;&gt; sponsors</p>
+
+### Support the culture.
+
+Sponsoring a BioData Basel apéro puts your organization in the room with the people building this community: data scientists, bioinformaticians, and computational biologists who show up to share real work, not sales pitches.
+
+<ul class="sponsor-benefits">
+<li>A speaking slot at the apéro, like Olink's</li>
+<li>Your logo on this page and at the event</li>
+<li>Direct visibility with Basel's biodata community</li>
+</ul>
+
+<!-- TODO: paste Google Form embed src below once created — field list in docs/superpowers/specs/2026-07-23-community-website-design.md -->
+<!-- <iframe src="PASTE_GOOGLE_FORM_EMBED_URL_HERE" width="100%" height="600" style="border:none;"></iframe> -->
+
+[get in touch about sponsoring →](mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20Community%20Sponsorship){.btn-cta .btn-cta-light}
+:::
+
+::: {.sponsor-example}
+<div class="sponsor-logos">
+<p class="sponsor-logos-label">thank you for sponsoring our next apéro</p>
+
+<img src="assets/sponsors/olink.png" alt="Olink"> <span class="logo-sep">×</span> <img src="assets/sponsors/thermo-fisher.png" alt="Thermo Fisher Scientific">
+</div>
+:::
+
+:::
+:::
+
+<div class="ruler ruler-flip" role="presentation"></div>
+
+<footer class="site-footer">
+<p>BIODATA BASEL · <a href="https://www.linkedin.com/in/flaviolombardo/">LinkedIn</a> · <a href="https://www.meetup.com/basel-science-meetup-group/">Meetup</a> · <a href="https://github.com/flalom/biodata-basel-meetup">GitHub</a></p>
+</footer>

@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+
+# index.qmd is rendered and deployed by .github/workflows/deploy.yml,
+# committing the output would just go stale. Other decks' HTML stays
+# committed as before, they're not built by this workflow.
+/index.html
+/index_files/
