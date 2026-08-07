@@ -21,17 +21,18 @@ format:
 :::
 
 :::: {#top .hero}
-::: {.hero-text}
+::: {.hero-banner}
+![](assets/hero-banner.jpg){.hero-banner-img alt="DNA helix and community network illustration"}
 <p class="eyebrow-hero">&gt;&gt; basel, switzerland</p>
+:::
 
-# Where Basel's biology<br>meets its data.
+::: {.hero-text}
+# Where Basel's **biology** meets its *data*.
 
 A community for data scientists, bioinformaticians, and computational biologists in Basel, with talks, demos, and an apéro.
 
 [see the next event →](#next-event){.btn-cta}
 :::
-
-![](assets/logo.png){.hero-mark alt="BioData Basel logo"}
 ::::
 
 <div class="ruler" role="presentation"></div>
@@ -56,8 +57,8 @@ We also like to keep moving around Basel, meeting at a different venue for each 
 <p class="sponsor-logos-label">with the support of</p>
 
 <img src="assets/sponsors/olink.png" alt="Olink">
-<span class="logo-sep">×</span>
-<img src="assets/sponsors/thermo-fisher.png" alt="Thermo Fisher Scientific">
+
+<p class="sponsor-sub-label">part of Thermo Fisher Scientific</p>
 </div>
 </div>
 <dl class="protocol-meta">
@@ -108,7 +109,9 @@ Sponsoring a BioData Basel apéro puts your organization in the room with the pe
 <div class="sponsor-logos">
 <p class="sponsor-logos-label">thank you for sponsoring our next apéro</p>
 
-<img src="assets/sponsors/olink.png" alt="Olink"> <span class="logo-sep">×</span> <img src="assets/sponsors/thermo-fisher.png" alt="Thermo Fisher Scientific">
+<img src="assets/sponsors/olink.png" alt="Olink">
+
+<p class="sponsor-sub-label">part of Thermo Fisher Scientific</p>
 </div>
 :::
 
