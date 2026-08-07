@@ -70,6 +70,66 @@ a:hover { color: darken($plate-teal, 10%); }
 }
 .content-block section.level2 > p { text-align: justify; text-justify: inter-word; }
 
+// ---------------------------------------------------------------- about cards
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+@media (max-width: 560px) {
+  .about-cards { grid-template-columns: 1fr; }
+}
+// Hover lifts the whole card even though the actual click targets are the
+// chip-links inside it — :hover on a parent fires for any descendant, so
+// this reads as "the card is interactive" without nesting <a> inside <a>.
+.about-card {
+  background: white;
+  border: 1px solid $paper-line;
+  border-radius: 0.4rem;
+  padding: 1.25rem 1.5rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.about-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(11, 31, 42, 0.08);
+}
+.about-card-label {
+  font-family: $mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: $rhine;
+  margin: 0 0 0.5rem;
+}
+.about-card > p:not(.about-card-label):not(.about-card-links) {
+  margin: 0 0 1rem;
+  text-align: left;
+}
+.about-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+}
+.chip-link {
+  display: inline-block;
+  border: 1px solid $rhine;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-family: $mono;
+  font-size: 0.8rem;
+  color: $rhine !important;
+  text-decoration: none !important;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.chip-link:hover {
+  background: $rhine;
+  color: white !important;
+  transform: translateY(-1px);
+}
+
 // ---------------------------------------------------------------- nav
 .site-nav {
   display: flex;
@@ -112,19 +172,8 @@ a:hover { color: darken($plate-teal, 10%); }
   position: relative;
   overflow: hidden;
   margin: 0 1.5rem;
-  height: clamp(200px, 28vw, 320px);
+  height: clamp(260px, 36vw, 420px);
   border-radius: 0.5rem;
-}
-// Scrim so the white eyebrow text stays legible regardless of which part
-// of the illustration ends up behind it — the crop shifts with viewport
-// width, and on narrow screens the eyebrow wraps to two lines and can
-// land over the busy network-icon cluster rather than open gradient.
-.hero-banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(11, 31, 42, 0.45) 0%, rgba(11, 31, 42, 0) 40%);
-  pointer-events: none;
 }
 // Markdown image syntax lands inside an implicit <p> — that's the actual
 // box being sized here, not the eyebrow's own explicit <p> next to it.
@@ -136,16 +185,24 @@ a:hover { color: darken($plate-teal, 10%); }
   object-fit: cover;
   object-position: center top;
 }
+// Solid white chip, not just a text-shadow — the crop shifts with viewport
+// width, and the underlying illustration ranges from dark blue to pale
+// green, so only an actual background (not a shadow or a gradient wash)
+// keeps the text legible regardless of what lands behind it. White also
+// echoes the page's existing white-card language (protocol-card,
+// sponsor-example) rather than introducing a new dark-chip idiom.
 .eyebrow-hero {
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
   margin: 0;
+  padding: 0.4rem 0.75rem;
+  background: rgba(246, 248, 247, 0.95);
+  border-radius: 0.3rem;
   font-family: $mono;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
-  color: white;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  color: $ink;
 }
 .hero-text {
   padding: 2.5rem 1.5rem 0;
@@ -153,21 +210,24 @@ a:hover { color: darken($plate-teal, 10%); }
 .hero h1 {
   font-family: $serif;
   font-weight: 400;
-  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
-  line-height: 1.15;
+  // Sized to fit the full headline on one line at the container's own
+  // max-width (64rem) rather than the type scale used elsewhere on the
+  // page — this line is longer than the old two-word tagline was.
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1.2;
   margin: 0 0 1.25rem;
   color: $ink;
 }
 .hero h1 strong { font-weight: 700; }
 .hero h1 em { font-style: italic; font-weight: 400; color: $plate-teal; }
 .hero p {
-  max-width: 34rem;
+  max-width: 44rem;
   color: $ink-soft;
   font-size: 1.15rem;
 }
 @media (max-width: 720px) {
-  .hero-banner { height: clamp(160px, 45vw, 220px); }
-  .eyebrow-hero { top: 1rem; left: 1rem; font-size: 0.75rem; }
+  .hero-banner { height: clamp(200px, 55vw, 280px); }
+  .eyebrow-hero { top: 1rem; left: 1rem; padding: 0.3rem 0.6rem; font-size: 0.7rem; }
 }
 
 @keyframes rise {

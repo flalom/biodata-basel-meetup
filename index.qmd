@@ -27,7 +27,7 @@ format:
 :::
 
 ::: {.hero-text}
-# Where Basel's **biology** meets its *data*.
+# Basel's **biology** and *data*, innovating together.
 
 A community for data scientists, bioinformaticians, and computational biologists in Basel, with talks, demos, and an apéro.
 
@@ -44,9 +44,18 @@ A community for data scientists, bioinformaticians, and computational biologists
 
 Welcome to the official home of the **BioData Basel community**, open to students, researchers, and professionals working in bioinformatics, data science, and genomics across the Basel area. We meet regularly to network, learn from each other, and explore what's new in BioData, in a relaxed setting, over talks and an apéro.
 
-Connect with us on [LinkedIn](https://www.linkedin.com/in/flaviolombardo/) or find our next event on the [Meetup page](https://www.meetup.com/basel-science-meetup-group/).
-
-We also like to keep moving around Basel, meeting at a different venue for each apéro. If your organization would like to host an upcoming event, [let us know](mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20Community%20Hosting).
+<div class="about-cards">
+<div class="about-card">
+<p class="about-card-label">connect</p>
+<p>Follow along, or catch the next event as soon as it's announced.</p>
+<p class="about-card-links"><a href="https://www.linkedin.com/in/flaviolombardo/" class="chip-link">LinkedIn →</a> <a href="https://www.meetup.com/basel-science-meetup-group/" class="chip-link">Meetup →</a></p>
+</div>
+<div class="about-card">
+<p class="about-card-label">host an apéro</p>
+<p>We move venues every time — if your organization wants to host one, we'd love to hear from you.</p>
+<p class="about-card-links"><a href="mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20Community%20Hosting" class="chip-link">get in touch →</a></p>
+</div>
+</div>
 
 ## Next event {#next-event}
 
@@ -102,7 +111,7 @@ Sponsoring a BioData Basel apéro puts your organization in the room with the pe
 <!-- TODO: paste Google Form embed src below once created — field list in docs/superpowers/specs/2026-07-23-community-website-design.md -->
 <!-- <iframe src="PASTE_GOOGLE_FORM_EMBED_URL_HERE" width="100%" height="600" style="border:none;"></iframe> -->
 
-[get in touch about sponsoring →](mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20Community%20Sponsorship){.btn-cta .btn-cta-light}
+[get in touch about sponsoring →](mailto:sponsor@biodata-basel.org?subject=BioData%20Basel%20Community%20Sponsorship){.btn-cta .btn-cta-light}
 :::
 
 ::: {.sponsor-example}
