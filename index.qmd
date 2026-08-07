@@ -52,7 +52,7 @@ Welcome to the official home of the **BioData Basel community**, open to student
 </div>
 <div class="about-card">
 <p class="about-card-label">host an apéro</p>
-<p>We move venues every time — if your organization wants to host one, we'd love to hear from you.</p>
+<p>We like to move around in Basel; if your organization wants to host us, we'd love to hear from you.</p>
 <p class="about-card-links"><a href="mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20Community%20Hosting" class="chip-link">get in touch →</a></p>
 </div>
 </div>
