@@ -61,7 +61,7 @@ Welcome to the official home of the **BioData Basel community**, open to student
 
 <div class="protocol-card">
 <div class="protocol-header">
-<p class="protocol-title"><span class="run-id">06</span> Mapping <em>E. coli</em>'s c-di-GMP signaling network</p>
+<p class="protocol-title"><span class="run-id">06</span> Challenges in Microbial Biofilm Formation</p>
 <div class="sponsor-logos">
 <p class="sponsor-logos-label">with the support of</p>
 
@@ -71,11 +71,11 @@ Welcome to the official home of the **BioData Basel community**, open to student
 </div>
 </div>
 <dl class="protocol-meta">
-<div><dt>date</dt><dd>2026-09-14</dd></div>
-<div><dt>venue</dt><dd>Department of Biomedicine (DBM), Hebelstrasse 20, Basel · 2nd floor</dd></div>
-<div><dt>speakers</dt><dd>Hendrik Mallin (Olink, 15 min) → Vitaliia Terzova (Jenal Lab)</dd></div>
+<div><dt>date</dt><dd>2026-09-14, 17:30-19:30</dd></div>
+<div><dt>venue</dt><dd>Department of Biomedicine (DBM), ZLF, Hebelstrasse 20, Basel · Seminar Room A, 2nd floor</dd></div>
+<div><dt>speakers</dt><dd>Hendrik Mallin (Olink, opening, 17:30) → Vitaliia Terzova (Biozentrum, University of Basel · Jenal Lab, main talk, 18:00)</dd></div>
 </dl>
-<p>Join us for an apéro-style evening: Hendrik Mallin from Olink (recently acquired by Thermo Fisher Scientific) opens with a 15-minute talk, then Vitaliia Terzova (Jenal Lab) presents her genome-engineering work mapping <em>E. coli</em>'s c-di-GMP signaling network. Her approach: sequentially delete all 12 diguanylate cyclase genes to build a c-di-GMP-free strain, screen the result for off-target mutations, then reintroduce individual genes to dissect how each one shapes bacterial behavior.</p>
+<p>c-di-GMP is the molecular switch that flips bacteria from swimming freely to building biofilms. Hendrik Mallin from Olink (part of Thermo Fisher Scientific) opens at 17:30 with case studies and opportunities at Olink, then Vitaliia Terzova (MSc, Biozentrum, University of Basel, Jenal Lab) presents at 18:00: what happens when you remove c-di-GMP entirely from <em>E. coli</em>, covering strain engineering, whole-genome sequencing, and single-cell biosensor readouts. She built the c-di-GMP-free <em>E. coli</em> strain, then reintroduced each diguanylate cyclase individually to dissect its role. Apéro and networking follow from 18:30 to 19:30, sponsored by Olink.</p>
 </div>
 
 ## Past events {#past-events}
