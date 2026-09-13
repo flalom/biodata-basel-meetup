@@ -318,6 +318,17 @@ h2::before { content: ">> "; color: $sequence; }
 // logos keep their size and never shrink.
 .protocol-header .protocol-title { flex: 1 1 auto; min-width: 0; }
 .protocol-header .sponsor-logos { flex-shrink: 0; }
+// Poster PDF + thumbnail live at <n>_<slug>/poster.pdf + poster-thumb.jpg
+// inside the event's own folder, same hand-authored convention as the deck
+// files. Sits next to the date in .protocol-meta; clicking opens the full
+// PDF (native "bigger", no lightbox needed).
+.poster-thumb {
+  display: block;
+  width: 56px;
+  height: auto;
+  border: 1px solid $paper-line;
+  border-radius: 0.3rem;
+}
 .sponsor-logos-label {
   font-family: $mono;
   font-size: 0.7rem;
@@ -367,6 +378,10 @@ h2::before { content: ">> "; color: $sequence; }
   border-bottom: 1px solid $paper-line;
 }
 .protocol-meta > div { display: flex; flex-direction: column; gap: 0.2rem; }
+// Date column carries the poster thumbnail alongside it, so this one column
+// is a row with the dt/dd re-wrapped into their own stack.
+.protocol-meta > div.protocol-meta-date { flex-direction: row; align-items: center; gap: 0.75rem; }
+.protocol-meta-date-text { display: flex; flex-direction: column; gap: 0.2rem; }
 .protocol-meta dt {
   font-family: $mono;
   font-size: 0.7rem;

@@ -27,4 +27,4 @@ Welcome to the official GitHub repository for the BioData Basel meetup group! Th
     *    Materials: Gist [https://gist.github.com/lars20070/b74ced14355d51c588ddde8828d3a7f0]
 ---
 
-Get in touch on [LinkedIn](https://www.linkedin.com/in/flaviolombardo/) or visit the [Meetup Page](https://www.meetup.com/basel-science-meetup-group/).
+Get in touch on [LinkedIn](https://www.linkedin.com/groups/11810024/) or visit the [Meetup Page](https://www.meetup.com/biodata-basel/).

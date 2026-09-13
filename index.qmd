@@ -48,7 +48,7 @@ Welcome to the official home of the **BioData Basel community**, open to student
 <div class="about-card">
 <p class="about-card-label">connect</p>
 <p>Follow along, or catch the next event as soon as it's announced.</p>
-<p class="about-card-links"><a href="https://www.linkedin.com/in/flaviolombardo/" class="chip-link">LinkedIn →</a> <a href="https://www.meetup.com/basel-science-meetup-group/" class="chip-link">Meetup →</a></p>
+<p class="about-card-links"><a href="https://www.linkedin.com/groups/11810024/" class="chip-link" target="_blank" rel="noopener">LinkedIn →</a> <a href="https://www.meetup.com/biodata-basel/" class="chip-link" target="_blank" rel="noopener">Meetup →</a> <a href="https://discord.gg/Weykuj5kHa" class="chip-link" target="_blank" rel="noopener">Discord →</a></p>
 </div>
 <div class="about-card">
 <p class="about-card-label">host an apéro</p>
@@ -65,16 +65,17 @@ Welcome to the official home of the **BioData Basel community**, open to student
 <div class="sponsor-logos">
 <p class="sponsor-logos-label">with the support of</p>
 
-<img src="assets/sponsors/olink.png" alt="Olink">
+<a href="https://olink.com/" target="_blank" rel="noopener"><img src="assets/sponsors/olink.png" alt="Olink"></a>
 
 <p class="sponsor-sub-label">part of Thermo Fisher Scientific</p>
 </div>
 </div>
 <dl class="protocol-meta">
-<div><dt>date</dt><dd>2026-09-14, 17:30-19:30</dd></div>
+<div class="protocol-meta-date"><div class="protocol-meta-date-text"><dt>date</dt><dd>2026-09-14, 17:30-19:30</dd></div><a href="6_ecoli_cdigmp/poster.pdf" target="_blank" rel="noopener"><img src="6_ecoli_cdigmp/poster-thumb.jpg" class="poster-thumb" alt="Event 06 poster, click to view full size"></a></div>
 <div><dt>venue</dt><dd>Department of Biomedicine (DBM), ZLF, Hebelstrasse 20, Basel · Seminar Room A, 2nd floor</dd></div>
 <div><dt>speakers</dt><dd>Hendrik Mallin (Olink, opening, 17:30) → Vitaliia Terzova (Biozentrum, University of Basel · Jenal Lab, main talk, 18:00)</dd></div>
 </dl>
+<p class="about-card-links"><a href="https://www.meetup.com/biodata-basel/events/316000657/" class="chip-link" target="_blank" rel="noopener">🎟️ RSVP on Meetup →</a> <a href="https://luma.com/fm5itc90" class="chip-link" target="_blank" rel="noopener">📅 RSVP on Luma →</a> <a href="6_ecoli_cdigmp/poster.pdf" class="chip-link" target="_blank" rel="noopener">📄 poster (PDF) →</a></p>
 <p>c-di-GMP is the molecular switch that flips bacteria from swimming freely to building biofilms. Hendrik Mallin from Olink (part of Thermo Fisher Scientific) opens at 17:30 with case studies and opportunities at Olink, then Vitaliia Terzova (MSc, Biozentrum, University of Basel, Jenal Lab) presents at 18:00: what happens when you remove c-di-GMP entirely from <em>E. coli</em>, covering strain engineering, whole-genome sequencing, and single-cell biosensor readouts. She built the c-di-GMP-free <em>E. coli</em> strain, then reintroduced each diguanylate cyclase individually to dissect its role. Apéro and networking follow from 18:30 to 19:30, sponsored by Olink.</p>
 </div>
 
@@ -118,7 +119,7 @@ Sponsoring a BioData Basel apéro puts your organization in the room with the pe
 <div class="sponsor-logos">
 <p class="sponsor-logos-label">thank you for sponsoring our next apéro</p>
 
-<img src="assets/sponsors/olink.png" alt="Olink">
+<a href="https://olink.com/" target="_blank" rel="noopener"><img src="assets/sponsors/olink.png" alt="Olink"></a>
 
 <p class="sponsor-sub-label">part of Thermo Fisher Scientific</p>
 </div>
@@ -130,5 +131,5 @@ Sponsoring a BioData Basel apéro puts your organization in the room with the pe
 <div class="ruler ruler-flip" role="presentation"></div>
 
 <footer class="site-footer">
-<p>BIODATA BASEL · <a href="https://www.linkedin.com/in/flaviolombardo/">LinkedIn</a> · <a href="https://www.meetup.com/basel-science-meetup-group/">Meetup</a> · <a href="https://github.com/flalom/biodata-basel-meetup">GitHub</a></p>
+<p>BIODATA BASEL · <a href="https://www.linkedin.com/groups/11810024/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.meetup.com/biodata-basel/" target="_blank" rel="noopener">Meetup</a> · <a href="https://discord.gg/Weykuj5kHa" target="_blank" rel="noopener">Discord</a> · <a href="https://github.com/flalom/biodata-basel-meetup" target="_blank" rel="noopener">GitHub</a></p>
 </footer>
