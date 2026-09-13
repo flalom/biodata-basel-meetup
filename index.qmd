@@ -29,7 +29,7 @@ format:
 ::: {.hero-text}
 # Basel's **biology** and *data*, innovating together.
 
-A community for data scientists, bioinformaticians, and computational biologists in Basel, with talks, demos, and an apéro.
+A community for data scientists, bioinformaticians, and computational biologists in Basel, with talks, demos, networking, and an apéro.
 
 [see the next event →](#next-event){.btn-cta}
 :::
