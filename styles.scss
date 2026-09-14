@@ -329,6 +329,39 @@ h2::before { content: ">> "; color: $sequence; }
   border: 1px solid $paper-line;
   border-radius: 0.3rem;
 }
+// Speaker headshots live at <n>_<slug>/presenters/<firstname>.jpg, square,
+// 240px, same hand-authored convention as poster-thumb. Each name links to
+// the speaker's LinkedIn so attendees can connect before the apero.
+.speaker-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  font-weight: 400;
+}
+.speaker {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+
+  img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  span { display: flex; flex-direction: column; }
+  strong { font-weight: 600; }
+  small {
+    font-family: $mono;
+    font-size: 0.7rem;
+    color: $ink-soft;
+  }
+  &:hover strong { text-decoration: underline; }
+}
+
 .sponsor-logos-label {
   font-family: $mono;
   font-size: 0.7rem;
