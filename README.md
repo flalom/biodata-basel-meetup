@@ -13,6 +13,9 @@ Welcome to the official GitHub repository for the BioData Basel meetup group! Th
 * **Event 5 (June 8th): Challenges in spatial transcriptomics - Adipocyte segmentation in bone marrow (Pavel Kos)**
     * **Topic:** challenges of cell type segmentation in spatial transcriptomics data. Using adipocyte segmentation in bone marrow as a concrete example, he will cover different model architectures, gradient-based inputs, and preliminary results from U-net based segmentation models.
     * **Materials:** [Download Presentation Slides](https://github.com/flalom/biodata-basel-meetup/raw/main/5_adipocyte_segmentation/adipocyte_segmentation_Pavel_Kos.pptx).
+* **Event 6 (September 14th): Challenges in Microbial Biofilm Formation (Vitaliia Terzova, opening talk by Hendrik Mallin, Olink)**
+    * **Topic:** What happens when c-di-GMP, the switch between free swimming and biofilm formation, is removed entirely from *E. coli*: strain engineering, whole-genome sequencing, and single-cell biosensor readouts. Apéro sponsored by Olink, part of Thermo Fisher Scientific.
+    * **Materials:** [Event poster](https://biodata-basel.org/6_ecoli_cdigmp/poster.pdf).
 
 ### 2025
 

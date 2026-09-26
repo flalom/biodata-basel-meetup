@@ -439,9 +439,10 @@ h2::before { content: ">> "; color: $sequence; }
   grid-template-columns: 2.5rem 6rem 1fr;
   gap: 1rem;
   padding: 1rem 0;
-  border-top: 1px solid $paper-line;
 }
-.run-log li:first-child { border-top: none; }
+// Separator on every row after the first *visible* one: entries not yet
+// released by their data-after date are still in the DOM, just hidden.
+.run-log li:not([hidden]) ~ li { border-top: 1px solid $paper-line; }
 .run-id {
   font-family: $mono;
   color: $sequence;
@@ -453,10 +454,18 @@ h2::before { content: ">> "; color: $sequence; }
   font-size: 0.9rem;
 }
 .run-desc a { margin-left: 0.35rem; white-space: nowrap; }
+// Past events keep their poster: the thumbnail tucks under the date, inside
+// the column the date already occupies, so the row height is unchanged.
+.run-date .poster-thumb { margin-top: 0.5rem; }
 @media (max-width: 560px) {
-  .run-log li { grid-template-columns: 1fr; gap: 0.25rem; }
-  .run-id::after { content: " ·"; }
-  .run-id, .run-date { display: inline; }
+  // Not a one-column grid: grid blockifies the items, which puts the run id
+  // and the date on separate lines. Plain block flow keeps "06 · 2026-09-14"
+  // together, and .run-date is inline-block so the block-level poster
+  // thumbnail it may hold doesn't split that line in two.
+  .run-log li { display: block; }
+  .run-id::after { content: " · "; }
+  .run-date { display: inline-block; vertical-align: top; }
+  .run-desc { display: block; margin-top: 0.25rem; }
 }
 
 // ---------------------------------------------------------------- sponsors (ink band)
@@ -535,3 +544,7 @@ h2::before { content: ">> "; color: $sequence; }
 }
 .site-footer a { color: $ink-soft; text-decoration: underline; }
 .site-footer a:hover { color: $rhine; }
+
+// Date-gated blocks (see the script in index.qmd) must stay hidden even
+// though .protocol-card and .run-log li set their own display.
+[hidden] { display: none !important; }

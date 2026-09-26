@@ -59,7 +59,7 @@ Welcome to the official home of the **BioData Basel community**, open to student
 
 ## Next event {#next-event}
 
-<div class="protocol-card">
+<div class="protocol-card" data-until="2026-09-14">
 <div class="protocol-header">
 <p class="protocol-title"><span class="run-id">06</span> Challenges in Microbial Biofilm Formation</p>
 <div class="sponsor-logos">
@@ -82,15 +82,33 @@ Welcome to the official home of the **BioData Basel community**, open to student
 <p>c-di-GMP is the molecular switch that flips bacteria from swimming freely to building biofilms. Hendrik Mallin from Olink (part of Thermo Fisher Scientific) opens at 17:30 with case studies and opportunities at Olink, then Vitaliia Terzova (MSc, Biozentrum, University of Basel, Jenal Lab) presents at 18:00: what happens when you remove c-di-GMP entirely from <em>E. coli</em>, covering strain engineering, whole-genome sequencing, and single-cell biosensor readouts. She built the c-di-GMP-free <em>E. coli</em> strain, then reintroduced each diguanylate cyclase individually to dissect its role. Apéro and networking follow from 18:30 to 19:30, sponsored by Olink.</p>
 </div>
 
+<div class="protocol-card" data-after="2026-09-14" hidden>
+<p class="protocol-title">Next event to be announced</p>
+<p>The next BioData Basel apéro is being planned. Follow the group to hear about it first, or get in touch if you would like to speak or host us.</p>
+<p class="about-card-links"><a href="https://www.meetup.com/biodata-basel/" class="chip-link" target="_blank" rel="noopener">🎟️ follow on Meetup →</a> <a href="https://www.linkedin.com/groups/11810024/" class="chip-link" target="_blank" rel="noopener">LinkedIn →</a> <a href="mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20talk%20proposal" class="chip-link">propose a talk →</a></p>
+</div>
+
 ## Past events {#past-events}
 
 <ol class="run-log">
+<li data-after="2026-09-14" hidden><span class="run-id">06</span><span class="run-date">2026-09-14<a href="6_ecoli_cdigmp/poster.pdf" target="_blank" rel="noopener"><img src="6_ecoli_cdigmp/poster-thumb.jpg" class="poster-thumb" alt="Event 06 poster, click to view full size"></a></span><span class="run-desc"><strong>Challenges in Microbial Biofilm Formation</strong>, presented by <a href="https://www.linkedin.com/in/vitaliia-terzova-02a466161/" target="_blank" rel="noopener">Vitaliia Terzova</a> (Biozentrum, Jenal Lab), with an opening talk by <a href="https://www.linkedin.com/in/dr-hendrik-mallin-bd-sales-specialist/" target="_blank" rel="noopener">Hendrik Mallin</a> (Olink). What happens when c-di-GMP is removed entirely from <em>E. coli</em>: strain engineering, whole-genome sequencing, and single-cell biosensor readouts. Apéro sponsored by Olink, part of Thermo Fisher Scientific.</span></li>
 <li><span class="run-id">05</span><span class="run-date">2026-06-08</span><span class="run-desc"><strong>Adipocyte segmentation in bone marrow</strong>, presented by <a href="https://www.linkedin.com/in/pavel-kos/" target="_blank" rel="noopener">Pavel Kos</a>. Challenges of cell-type segmentation in spatial transcriptomics, using adipocyte segmentation in bone marrow as a case study: model architectures, gradient-based inputs, and preliminary U-net results. <a href="https://github.com/flalom/biodata-basel-meetup/raw/main/5_adipocyte_segmentation/adipocyte_segmentation_Pavel_Kos.pptx">slides</a></span></li>
 <li><span class="run-id">04</span><span class="run-date">2026-04-09</span><span class="run-desc"><strong>Challenges in Microbiome Translational Research</strong>, presented by <a href="https://www.linkedin.com/in/vivien-pichon-098004174/" target="_blank" rel="noopener">Vivien Pichon</a>. A simplified workflow in a microbiome study, with emphasis on the challenges of combining it with bioassays. <a href="https://github.com/flalom/biodata-basel-meetup/raw/main/4_Challenges_in_Microbiome_Research/BioData_meetup_final.pptx">slides</a> · <a href="https://biodata-basel.org/4_Challenges_in_Microbiome_Research/BioData_meetup4_markdown.html">workflow</a></span></li>
 <li><span class="run-id">03</span><span class="run-date">2025-12-18</span><span class="run-desc"><strong>MCP server introduction</strong>, presented by <a href="https://www.linkedin.com/in/larsnilse/" target="_blank" rel="noopener">Lars Nilse</a>. What are MCP servers and how could you use them? <a href="https://gist.github.com/lars20070/b74ced14355d51c588ddde8828d3a7f0">gist</a></span></li>
 <li><span class="run-id">02</span><span class="run-date">2025-11-13</span><span class="run-desc"><strong>LLMs in research</strong>. How are you using LLMs? Examples, discussion, and a demo, presented by <a href="https://www.linkedin.com/in/flaviolombardo/" target="_blank" rel="noopener">Flavio Lombardo</a>. <a href="https://biodata-basel.org/2_LLMs_in_research/2_LLMs_in_research.html">slides</a></span></li>
 <li><span class="run-id">01</span><span class="run-date">2025-07-31</span><span class="run-desc"><strong>Meet &amp; Greet</strong>. Community planning session to decide the future format of the group, by <a href="https://www.linkedin.com/in/flaviolombardo/" target="_blank" rel="noopener">Flavio Lombardo</a>. <a href="https://biodata-basel.org/1_meet_and_greet/1_meet_and_greet.html">slides</a></span></li>
 </ol>
+
+<script>
+// Events retire themselves: the day after [data-until] the next-event card
+// hides, and everything marked [data-after] (its run-log entry, the
+// "to be announced" card) appears. Add both when announcing a new event.
+(function () {
+  var today = new Date().toISOString().slice(0, 10);  // UTC; a few hours' slack on the flip is fine
+  document.querySelectorAll('[data-until]').forEach(function (el) { el.hidden = today > el.dataset.until; });
+  document.querySelectorAll('[data-after]').forEach(function (el) { el.hidden = today <= el.dataset.after; });
+})();
+</script>
 
 :::
 
@@ -120,7 +138,7 @@ Sponsoring a BioData Basel apéro puts your organization in the room with the pe
 
 ::: {.sponsor-example}
 <div class="sponsor-logos">
-<p class="sponsor-logos-label">thank you for sponsoring our next apéro</p>
+<p class="sponsor-logos-label">thank you for sponsoring our apéro</p>
 
 <a href="https://olink.com/" target="_blank" rel="noopener"><img src="assets/sponsors/olink.png" alt="Olink"></a>
 
