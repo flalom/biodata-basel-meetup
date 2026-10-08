@@ -130,6 +130,67 @@ a:hover { color: darken($plate-teal, 10%); }
   transform: translateY(-1px);
 }
 
+// Brevo email signup under the next-event cards (outside them, so it survives
+// event rotation); pill shapes echo .chip-link.
+.signup-block {
+  margin-top: 1.5rem;
+  border: 1px solid $paper-line;
+  border-left: 3px solid $rhine;
+  border-radius: 0.4rem;
+  padding: 1.5rem 2rem;
+  background: white;
+}
+.signup-title {
+  font-family: $serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+.signup-block .signup-form { max-width: 34rem; margin-top: 1rem; }
+.signup-block .signup-note { margin: 0; }
+.signup-status {
+  font-family: $mono;
+  font-size: 0.8rem;
+  color: $plate-teal;
+  margin: 0.5rem 0 0;
+}
+.signup-status:empty { display: none; }
+.signup-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+}
+.signup-form input {
+  flex: 1 1 14rem;
+  min-width: 0;
+  border: 1px solid $paper-line;
+  border-radius: 999px;
+  padding: 0.4rem 0.95rem;
+  font-family: $mono;
+  font-size: 0.85rem;
+  background: $paper;
+  color: $ink;
+}
+.signup-form input:focus { outline: 2px solid $rhine; outline-offset: 1px; }
+.signup-form button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
+  background: $sequence;
+  color: white;
+  font-family: $mono;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.signup-note {
+  font-family: $mono;
+  font-size: 0.72rem;
+  color: $ink-soft;
+  margin: 0 0 1rem;
+}
+
 // ---------------------------------------------------------------- nav
 .site-nav {
   display: flex;

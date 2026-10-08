@@ -47,14 +47,48 @@ Welcome to the official home of the **BioData Basel community**, open to student
 <div class="about-cards">
 <div class="about-card">
 <p class="about-card-label">connect</p>
-<p>Follow along, or catch the next event as soon as it's announced.</p>
+<p>Follow along, or catch the next event as soon as we announce it.</p>
 <p class="about-card-links"><a href="https://www.linkedin.com/groups/11810024/" class="chip-link" target="_blank" rel="noopener">LinkedIn →</a> <a href="https://www.meetup.com/biodata-basel/" class="chip-link" target="_blank" rel="noopener">Meetup →</a> <a href="https://discord.gg/Weykuj5kHa" class="chip-link" target="_blank" rel="noopener">Discord →</a></p>
 </div>
 <div class="about-card">
 <p class="about-card-label">host an apéro</p>
 <p>We like to move around in Basel; if your organization wants to host us, we'd love to hear from you.</p>
-<p class="about-card-links"><a href="mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20Community%20Hosting" class="chip-link">get in touch →</a></p>
+<p class="about-card-links"><a href="mailto:events@biodata-basel.org?subject=BioData%20Basel%20Community%20Hosting" class="chip-link">get in touch →</a></p>
 </div>
+</div>
+
+<div class="signup-block" id="newsletter">
+<p class="about-card-label">newsletter</p>
+<p class="signup-title">Never miss an event.</p>
+<p>Get the date, venue and speakers in your inbox as soon as we announce a new event.</p>
+<!-- Brevo signup: lives in About, not in an event card, so it never hides with event rotation. Plain POST to the Brevo form, no Brevo JS/CSS. -->
+<form class="signup-form" method="POST" action="https://829cffdb.sibforms.com/v2/serve/MUIFAK2j9rrEZu7S1fz6d9lmJuy0MILmNh-FzSvcaffMbvLIhGOKbIiQ7Db3enB96ja-2WzpjScqwigo_6ELjWCLcEZlRmDtFb-ySbQ98zUgHtvUlV2zOdJpflU_7KJjor4tz37KER-Hj16ctzfe9gwwdaSaf0GKWcX_PqQS48KSBBl1RXMbhIbe2n9oMO2WfOSY9wFWlTh1ZP2mZA==" target="_blank">
+<label class="visually-hidden" for="signup-email">Email</label>
+<input id="signup-email" type="email" name="EMAIL" placeholder="your email here" autocomplete="email" required>
+<input type="text" name="email_address_check" value="" hidden tabindex="-1" autocomplete="off">
+<input type="hidden" name="locale" value="en">
+<button type="submit">notify me →</button>
+</form>
+<p class="signup-note">max 1 email per month · unsubscribe anytime · sent via Brevo</p>
+<p class="signup-status" role="status" aria-live="polite"></p>
+<script>
+// Post in the background and show Brevo's own message (set in the form's
+// Alerts) inside the card. Without JS the form still posts, but Brevo then
+// answers with raw JSON in a new tab.
+document.querySelector('.signup-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var form = this, status = document.querySelector('.signup-status');
+  var fail = 'Something went wrong, please try again.';
+  status.textContent = 'Sending...';
+  fetch(form.action, { method: 'POST', body: new FormData(form) })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      status.textContent = d.message || (d.success ? 'Thanks! Check your inbox.' : fail);
+      if (d.success) form.reset();
+    })
+    .catch(function () { status.textContent = fail; });
+});
+</script>
 </div>
 
 ## Next event {#next-event}
@@ -84,14 +118,14 @@ Welcome to the official home of the **BioData Basel community**, open to student
 
 <div class="protocol-card" data-after="2026-09-14" hidden>
 <p class="protocol-title">Next event to be announced</p>
-<p>The next BioData Basel apéro is being planned. Follow the group to hear about it first, or get in touch if you would like to speak or host us.</p>
-<p class="about-card-links"><a href="https://www.meetup.com/biodata-basel/" class="chip-link" target="_blank" rel="noopener">🎟️ follow on Meetup →</a> <a href="https://www.linkedin.com/groups/11810024/" class="chip-link" target="_blank" rel="noopener">LinkedIn →</a> <a href="mailto:flavio.lombardo@pm.me?subject=BioData%20Basel%20talk%20proposal" class="chip-link">propose a talk →</a></p>
+<p>We are planning the next BioData Basel apéro. Follow the group to hear about it first, or get in touch if you would like to speak or host us.</p>
+<p class="about-card-links"><a href="https://www.meetup.com/biodata-basel/" class="chip-link" target="_blank" rel="noopener">🎟️ follow on Meetup →</a> <a href="https://www.linkedin.com/groups/11810024/" class="chip-link" target="_blank" rel="noopener">LinkedIn →</a> <a href="mailto:events@biodata-basel.org?subject=BioData%20Basel%20talk%20proposal" class="chip-link">propose a talk →</a></p>
 </div>
 
 ## Past events {#past-events}
 
 <ol class="run-log">
-<li data-after="2026-09-14" hidden><span class="run-id">06</span><span class="run-date">2026-09-14<a href="6_ecoli_cdigmp/poster.pdf" target="_blank" rel="noopener"><img src="6_ecoli_cdigmp/poster-thumb.jpg" class="poster-thumb" alt="Event 06 poster, click to view full size"></a></span><span class="run-desc"><strong>Challenges in Microbial Biofilm Formation</strong>, presented by <a href="https://www.linkedin.com/in/vitaliia-terzova-02a466161/" target="_blank" rel="noopener">Vitaliia Terzova</a> (Biozentrum, Jenal Lab), with an opening talk by <a href="https://www.linkedin.com/in/dr-hendrik-mallin-bd-sales-specialist/" target="_blank" rel="noopener">Hendrik Mallin</a> (Olink). What happens when c-di-GMP is removed entirely from <em>E. coli</em>: strain engineering, whole-genome sequencing, and single-cell biosensor readouts. Apéro sponsored by Olink, part of Thermo Fisher Scientific.</span></li>
+<li data-after="2026-09-14" hidden><span class="run-id">06</span><span class="run-date">2026-09-14<a href="6_ecoli_cdigmp/poster.pdf" target="_blank" rel="noopener"><img src="6_ecoli_cdigmp/poster-thumb.jpg" class="poster-thumb" alt="Event 06 poster, click to view full size"></a></span><span class="run-desc"><strong>Challenges in Microbial Biofilm Formation</strong>, presented by <a href="https://www.linkedin.com/in/vitaliia-terzova-02a466161/" target="_blank" rel="noopener">Vitaliia Terzova</a> (Biozentrum, Jenal Lab), with an opening talk by <a href="https://www.linkedin.com/in/dr-hendrik-mallin-bd-sales-specialist/" target="_blank" rel="noopener">Hendrik Mallin</a> (Olink). What happens when you remove c-di-GMP entirely from <em>E. coli</em>: strain engineering, whole-genome sequencing, and single-cell biosensor readouts. Apéro sponsored by Olink, part of Thermo Fisher Scientific.</span></li>
 <li><span class="run-id">05</span><span class="run-date">2026-06-08</span><span class="run-desc"><strong>Adipocyte segmentation in bone marrow</strong>, presented by <a href="https://www.linkedin.com/in/pavel-kos/" target="_blank" rel="noopener">Pavel Kos</a>. Challenges of cell-type segmentation in spatial transcriptomics, using adipocyte segmentation in bone marrow as a case study: model architectures, gradient-based inputs, and preliminary U-net results. <a href="https://github.com/flalom/biodata-basel-meetup/raw/main/5_adipocyte_segmentation/adipocyte_segmentation_Pavel_Kos.pptx">slides</a></span></li>
 <li><span class="run-id">04</span><span class="run-date">2026-04-09</span><span class="run-desc"><strong>Challenges in Microbiome Translational Research</strong>, presented by <a href="https://www.linkedin.com/in/vivien-pichon-098004174/" target="_blank" rel="noopener">Vivien Pichon</a>. A simplified workflow in a microbiome study, with emphasis on the challenges of combining it with bioassays. <a href="https://github.com/flalom/biodata-basel-meetup/raw/main/4_Challenges_in_Microbiome_Research/BioData_meetup_final.pptx">slides</a> · <a href="https://biodata-basel.org/4_Challenges_in_Microbiome_Research/BioData_meetup4_markdown.html">workflow</a></span></li>
 <li><span class="run-id">03</span><span class="run-date">2025-12-18</span><span class="run-desc"><strong>MCP server introduction</strong>, presented by <a href="https://www.linkedin.com/in/larsnilse/" target="_blank" rel="noopener">Lars Nilse</a>. What are MCP servers and how could you use them? <a href="https://gist.github.com/lars20070/b74ced14355d51c588ddde8828d3a7f0">gist</a></span></li>
@@ -153,4 +187,5 @@ Sponsoring a BioData Basel apéro puts your organization in the room with the pe
 
 <footer class="site-footer">
 <p>BIODATA BASEL · <a href="https://www.linkedin.com/groups/11810024/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.meetup.com/biodata-basel/" target="_blank" rel="noopener">Meetup</a> · <a href="https://discord.gg/Weykuj5kHa" target="_blank" rel="noopener">Discord</a> · <a href="https://github.com/flalom/biodata-basel-meetup" target="_blank" rel="noopener">GitHub</a></p>
+<p>organized by Flavio Lombardo</p>
 </footer>
