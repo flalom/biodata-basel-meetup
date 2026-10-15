@@ -93,9 +93,9 @@ document.querySelector('.signup-form').addEventListener('submit', function (e) {
 
 ## Next event {#next-event}
 
-<div class="protocol-card" data-until="2026-09-14">
+<div class="protocol-card" data-until="2026-11-12">
 <div class="protocol-header">
-<p class="protocol-title"><span class="run-id">06</span> Challenges in Microbial Biofilm Formation</p>
+<p class="protocol-title"><span class="run-id">07</span> Overcoming Chemoresistance in Ovarian Cancer</p>
 <div class="sponsor-logos">
 <p class="sponsor-logos-label">with the support of</p>
 
@@ -105,18 +105,18 @@ document.querySelector('.signup-form').addEventListener('submit', function (e) {
 </div>
 </div>
 <dl class="protocol-meta">
-<div class="protocol-meta-date"><div class="protocol-meta-date-text"><dt>date</dt><dd>2026-09-14, 17:30-19:30</dd></div><a href="6_ecoli_cdigmp/poster.pdf" target="_blank" rel="noopener"><img src="6_ecoli_cdigmp/poster-thumb.jpg" class="poster-thumb" alt="Event 06 poster, click to view full size"></a></div>
-<div><dt>venue</dt><dd>Department of Biomedicine (DBM), ZLF, Hebelstrasse 20, Basel · Seminar Room A, 2nd floor</dd></div>
+<div class="protocol-meta-date"><div class="protocol-meta-date-text"><dt>date</dt><dd>2026-11-12, 17:30-19:30</dd></div><a href="7_ovarian_chemoresistance/poster.pdf" target="_blank" rel="noopener"><img src="7_ovarian_chemoresistance/poster-thumb.jpg" class="poster-thumb" alt="Event 07 poster, click to view full size"></a></div>
+<div><dt>venue</dt><dd>Department of Biomedicine (DBM), ZLF, Hebelstrasse 20, Basel · Seminar Room, 2nd floor</dd></div>
 <div><dt>speakers</dt><dd class="speaker-list">
-<a class="speaker" href="https://www.linkedin.com/in/dr-hendrik-mallin-bd-sales-specialist/" target="_blank" rel="noopener"><img src="assets/presenter-placeholder.svg" alt=""><span><strong>Hendrik Mallin</strong><small>Olink · opening, 17:30</small></span></a>
-<a class="speaker" href="https://www.linkedin.com/in/vitaliia-terzova-02a466161/" target="_blank" rel="noopener"><img src="assets/presenter-placeholder.svg" alt=""><span><strong>Vitaliia Terzova</strong><small>Biozentrum, Univ. of Basel · Jenal Lab · main talk, 18:00</small></span></a>
+<a class="speaker" href="https://www.linkedin.com/in/dr-hendrik-mallin-bd-sales-specialist/" target="_blank" rel="noopener"><img src="7_ovarian_chemoresistance/presenters/hendrik.jpg" alt=""><span><strong>Hendrik Mallin</strong><small>Olink · opening, 17:30</small></span></a>
+<a class="speaker" href="https://www.linkedin.com/in/ricardo-coelho-65617291/" target="_blank" rel="noopener"><img src="7_ovarian_chemoresistance/presenters/ricardo.jpg" alt=""><span><strong>Ricardo Coelho</strong><small>Univ. Hospital Basel · Ovarian Cancer Research Group · main talk, 18:00</small></span></a>
 </dd></div>
 </dl>
-<p class="about-card-links"><a href="https://www.meetup.com/biodata-basel/events/316000657/" class="chip-link" target="_blank" rel="noopener">🎟️ RSVP on Meetup →</a> <a href="https://luma.com/fm5itc90" class="chip-link" target="_blank" rel="noopener">📅 RSVP on Luma →</a> <a href="6_ecoli_cdigmp/poster.pdf" class="chip-link" target="_blank" rel="noopener">📄 poster (PDF) →</a></p>
-<p>c-di-GMP is the molecular switch that flips bacteria from swimming freely to building biofilms. Hendrik Mallin from Olink (part of Thermo Fisher Scientific) opens at 17:30 with case studies and opportunities at Olink, then Vitaliia Terzova (MSc, Biozentrum, University of Basel, Jenal Lab) presents at 18:00: what happens when you remove c-di-GMP entirely from <em>E. coli</em>, covering strain engineering, whole-genome sequencing, and single-cell biosensor readouts. She built the c-di-GMP-free <em>E. coli</em> strain, then reintroduced each diguanylate cyclase individually to dissect its role. Apéro and networking follow from 18:30 to 19:30, sponsored by Olink.</p>
+<p class="about-card-links"><a href="https://www.meetup.com/biodata-basel/events/316973765/" class="chip-link" target="_blank" rel="noopener">🎟️ RSVP on Meetup →</a> <a href="https://luma.com/v9e04jua" class="chip-link" target="_blank" rel="noopener">📅 RSVP on Luma →</a> <a href="7_ovarian_chemoresistance/poster.pdf" class="chip-link" target="_blank" rel="noopener">📄 poster (PDF) →</a></p>
+<p><em>"Chemotherapy primes tumor-associated macrophages to enable caspase-8 dependent apoptosis triggered by birinapant in ovarian cancer cells."</em> Ovarian cancer usually returns resistant to chemotherapy. Ricardo Coelho (PhD, Ovarian Cancer Research Group, Department of Biomedicine, University Hospital Basel) shows how tumor macrophages and a SMAC mimetic can re-trigger cell death, and how ex vivo drug testing on patient tissue helps predict who benefits: birinapant, tumor macrophages and mesothelin as predictors of response. Hendrik Mallin from Olink (part of Thermo Fisher Scientific) opens at 17:30 with case studies and opportunities at Olink. Apéro and networking follow from 18:30 to 19:30, sponsored by Olink.</p>
 </div>
 
-<div class="protocol-card" data-after="2026-09-14" hidden>
+<div class="protocol-card" data-after="2026-11-12" hidden>
 <p class="protocol-title">Next event to be announced</p>
 <p>We are planning the next BioData Basel apéro. Follow the group to hear about it first, or get in touch if you would like to speak or host us.</p>
 <p class="about-card-links"><a href="https://www.meetup.com/biodata-basel/" class="chip-link" target="_blank" rel="noopener">🎟️ follow on Meetup →</a> <a href="https://www.linkedin.com/groups/11810024/" class="chip-link" target="_blank" rel="noopener">LinkedIn →</a> <a href="mailto:events@biodata-basel.org?subject=BioData%20Basel%20talk%20proposal" class="chip-link">propose a talk →</a></p>
@@ -125,6 +125,7 @@ document.querySelector('.signup-form').addEventListener('submit', function (e) {
 ## Past events {#past-events}
 
 <ol class="run-log">
+<li data-after="2026-11-12" hidden><span class="run-id">07</span><span class="run-date">2026-11-12<a href="7_ovarian_chemoresistance/poster.pdf" target="_blank" rel="noopener"><img src="7_ovarian_chemoresistance/poster-thumb.jpg" class="poster-thumb" alt="Event 07 poster, click to view full size"></a></span><span class="run-desc"><strong>Overcoming Chemoresistance in Ovarian Cancer</strong>, presented by <a href="https://www.linkedin.com/in/ricardo-coelho-65617291/" target="_blank" rel="noopener">Ricardo Coelho</a> (University Hospital Basel, Ovarian Cancer Research Group), with an opening talk by <a href="https://www.linkedin.com/in/dr-hendrik-mallin-bd-sales-specialist/" target="_blank" rel="noopener">Hendrik Mallin</a> (Olink). How chemotherapy primes tumor-associated macrophages for birinapant-induced apoptosis, and how ex vivo drug testing on patient tissue predicts response. Apéro sponsored by Olink, part of Thermo Fisher Scientific.</span></li>
 <li data-after="2026-09-14" hidden><span class="run-id">06</span><span class="run-date">2026-09-14<a href="6_ecoli_cdigmp/poster.pdf" target="_blank" rel="noopener"><img src="6_ecoli_cdigmp/poster-thumb.jpg" class="poster-thumb" alt="Event 06 poster, click to view full size"></a></span><span class="run-desc"><strong>Challenges in Microbial Biofilm Formation</strong>, presented by <a href="https://www.linkedin.com/in/vitaliia-terzova-02a466161/" target="_blank" rel="noopener">Vitaliia Terzova</a> (Biozentrum, Jenal Lab), with an opening talk by <a href="https://www.linkedin.com/in/dr-hendrik-mallin-bd-sales-specialist/" target="_blank" rel="noopener">Hendrik Mallin</a> (Olink). What happens when you remove c-di-GMP entirely from <em>E. coli</em>: strain engineering, whole-genome sequencing, and single-cell biosensor readouts. Apéro sponsored by Olink, part of Thermo Fisher Scientific.</span></li>
 <li><span class="run-id">05</span><span class="run-date">2026-06-08</span><span class="run-desc"><strong>Adipocyte segmentation in bone marrow</strong>, presented by <a href="https://www.linkedin.com/in/pavel-kos/" target="_blank" rel="noopener">Pavel Kos</a>. Challenges of cell-type segmentation in spatial transcriptomics, using adipocyte segmentation in bone marrow as a case study: model architectures, gradient-based inputs, and preliminary U-net results. <a href="https://github.com/flalom/biodata-basel-meetup/raw/main/5_adipocyte_segmentation/adipocyte_segmentation_Pavel_Kos.pptx">slides</a></span></li>
 <li><span class="run-id">04</span><span class="run-date">2026-04-09</span><span class="run-desc"><strong>Challenges in Microbiome Translational Research</strong>, presented by <a href="https://www.linkedin.com/in/vivien-pichon-098004174/" target="_blank" rel="noopener">Vivien Pichon</a>. A simplified workflow in a microbiome study, with emphasis on the challenges of combining it with bioassays. <a href="https://github.com/flalom/biodata-basel-meetup/raw/main/4_Challenges_in_Microbiome_Research/BioData_meetup_final.pptx">slides</a> · <a href="https://biodata-basel.org/4_Challenges_in_Microbiome_Research/BioData_meetup4_markdown.html">workflow</a></span></li>

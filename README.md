@@ -16,6 +16,9 @@ Welcome to the official GitHub repository for the BioData Basel meetup group! Th
 * **Event 6 (September 14th): Challenges in Microbial Biofilm Formation (Vitaliia Terzova, opening talk by Hendrik Mallin, Olink)**
     * **Topic:** What happens when c-di-GMP, the switch between free swimming and biofilm formation, is removed entirely from *E. coli*: strain engineering, whole-genome sequencing, and single-cell biosensor readouts. Apéro sponsored by Olink, part of Thermo Fisher Scientific.
     * **Materials:** [Event poster](https://biodata-basel.org/6_ecoli_cdigmp/poster.pdf).
+* **Event 7 (November 12th): Overcoming Chemoresistance in Ovarian Cancer (Ricardo Coelho, opening talk by Hendrik Mallin, Olink)**
+    * **Topic:** How chemotherapy primes tumor-associated macrophages to enable caspase-8 dependent apoptosis triggered by birinapant in ovarian cancer cells, and how ex vivo drug testing on patient tissue predicts response. Apéro sponsored by Olink, part of Thermo Fisher Scientific.
+    * **Materials:** [Event poster](https://biodata-basel.org/7_ovarian_chemoresistance/poster.pdf).
 
 ### 2025
 
